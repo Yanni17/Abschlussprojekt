@@ -2,21 +2,63 @@ class ManagerAccount(
     benutzerName: String,
     passwort: String,
     var isAdmin: Boolean
-): Account(benutzerName,passwort) {
+) : Account(benutzerName, passwort) {
 
 
+    fun alleProdukteAnsehen() {}
     fun produktHinzufuegen(produkt: Produkt, shop: Shop) {
 
         shop.alleProdukte.add(produkt)
 
     }
 
-    fun produktLoeschen(produkt: Produkt, shop: Shop) {
+    fun produktLoeschen(alleArtikel: MutableList<Produkt>) {
 
-        shop.alleProdukte.remove(produkt)
+        for ((index, produkt) in alleArtikel.withIndex()) {
+            println("[${index + 1}] $produkt")
+        }
+        println()
+        println("Welches Produkt soll aus dem Sortiment genommen werden?")
+        var eingabe = 0
+
+        while (true) {
+
+            try {
+
+                eingabe = readln().toInt()
+                if (eingabe > alleArtikel.size) {
+                    throw Exception("")
+                }
+
+                var ausgewaehltesProdukt = alleArtikel[eingabe - 1]
+
+                println("Sind Sie sicher das Sie $ausgewaehltesProdukt entfernen möchten?")
+
+                var abfrage = readln().lowercase()
+
+                if (abfrage == "ja") {
+
+                    alleArtikel.remove(ausgewaehltesProdukt)
+
+                    println("Produkt erfolgreich entfernt!")
+
+                    break
+                }else {
+                    println("Sie werden zurück geleitet!")
+                    break
+                }
+
+            } catch (e: Exception) {
+                println("Ungültige Eingabe")
+            }
+
+
+        }
+
+
     }
 
-    fun produktErstellen(): Produkt {
+    fun produktErstellen(alleArtikel: MutableList<Produkt>) {
 
         var auswahl = 0
 
@@ -91,29 +133,40 @@ class ManagerAccount(
 
                 1 -> {
                     println("In welcher Größe? z.B 'M' ")
-                    groesse = readln().first()
-                    return Tshirt(name, preis, bewertung, 10, groesse)
+                    groesse = readln().capitalize().first()
+                    var tShirt = Tshirt(name, preis, bewertung, 10, groesse)
+                    alleArtikel.add(tShirt)
+                    println("Produkt erfolgreich erstellt.")
+                    break
 
                 }
 
                 2 -> {
                     println("In welcher Größe? z.B 'M' ")
-                    groesse = readln().first()
-                    return Pullover(name, preis, bewertung, 10, groesse)
+                    groesse = readln().capitalize().first()
+                    var pullover = Pullover(name, preis, bewertung, 10, groesse)
+                    alleArtikel.add(pullover)
+                    println("Produkt erfolgreich erstellt.")
+                    break
 
                 }
 
                 3 -> {
                     println("Welche Farbe hat das Produkt: ")
                     farbe = readln()
-                    return Halsketten(name, preis, bewertung, 10, farbe)
-
+                    var halskette = Halsketten(name, preis, bewertung, 10, farbe)
+                    alleArtikel.add(halskette)
+                    println("Produkt erfolgreich erstellt.")
+                    break
                 }
 
                 4 -> {
                     println("Welche Farbe hat das Produkt: ")
                     farbe = readln()
-                    return Armbaender(name, preis, bewertung, 10, farbe)
+                    var halskette = Armbaender(name, preis, bewertung, 10, farbe)
+                    alleArtikel.add(halskette)
+                    println("Produkt erfolgreich erstellt.")
+                    break
 
                 }
             }

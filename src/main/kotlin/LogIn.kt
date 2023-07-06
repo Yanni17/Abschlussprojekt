@@ -1,7 +1,9 @@
 class LogIn {
 
 
-    var accountDaten = mutableListOf<Account>()
+    var accountDaten = mutableListOf<Account>(
+        ManagerAccount("Admin","Jonny123",true)
+    )
 
     var isAdmin = false
 
@@ -10,24 +12,30 @@ class LogIn {
         var passwort = ""
         println("Registration!")
 
-
         while (true) {
 
             println("Benutzername:")
             var benutzerName = readln()
 
-            for (account in accountDaten) {
-                if (account is KundenAccount) {
-                    if (benutzerName == account.benutzername) {
-                        println("Benutzername existiert bereits.")
-                        continue
+            try {
+
+                for (account in accountDaten) {
+                    if (account is KundenAccount) {
+                        if (benutzerName == account.benutzername) {
+                            throw Exception("")
+                        }
                     }
                 }
+
+            }catch (e:Exception){
+                println("Benutzername Existiert bereits.")
+                continue
             }
 
             try {
 
                 while (true) {
+
                     var minLength = 10
                     println("Passwort:  ")
                     passwort = readln()
@@ -71,86 +79,9 @@ class LogIn {
                 }
             }
 
-            println("Zahlungsmöglichkeiten: ")
-            var auswahl = 0
-            println()
-
-            while (true) {
-
-                try {
-
-                    println(
-                        """
-                        
-                        [1] PayPal
-                        [2] Apple Pay
-                        [3] Sofort-Überweisung
-                        
-                    """.trimIndent()
-                    )
-
-                    auswahl = readln().toInt()
-                    if (auswahl !in 1..3) {
-                        throw Exception("Die Auswahl haben wir nicht.")
-                    }
-
-                    when (auswahl) {
-
-                        1 -> {
-                            println("Bitte geben sie einen Pin ein.")
-                            println("max. 4 Zeichen // z.B 1996 || z.B Auto")
-                            var pin = readln()
-                            if (pin.length <= 4) {
-                                println("Account erfolgreich erstellt.")
-                                var account = KundenAccount(benutzerName, passwort, alter, isAdmin, "PayPal", pin)
-                                accountDaten.add(account)
-                                return account
-                            } else {
-                                throw Exception("max. 4 Zeichen!")
-                            }
-                        }
-
-                        2 -> {
-                            println("Bitte geben sie einen Pin ein.")
-                            println("max. 4 Zeichen // z.B 1996 || z.B Auto")
-                            var pin = readln()
-                            if (pin.length <= 4) {
-                                println("Account erfolgreich erstellt.")
-                                var account = KundenAccount(benutzerName, passwort, alter, isAdmin, "Apple Pay", pin)
-                                accountDaten.add(account)
-                                return account
-                            } else {
-                                throw Exception("max. 4 Zeichen!")
-                            }
-
-                        }
-
-                        3 -> {
-                            println("Bitte geben sie einen Pin ein.")
-                            println("max. 4 Zeichen // z.B 1996 || z.B Auto")
-                            var pin = readln()
-                            if (pin.length <= 4) {
-                                println("Account erfolgreich erstellt.")
-                                var account = KundenAccount(benutzerName, passwort, alter, isAdmin, "Sofort-Überweisung", pin)
-                                accountDaten.add(account)
-                                return account
-                            } else {
-                                throw Exception("max. 4 Zeichen!")
-                            }
-                        }
-
-
-                    }
-
-
-                } catch (e: Exception) {
-                    println("Ungültige Eingabe")
-                    e.message
-                }
-
-
-            }
-
+            var account = KundenAccount(benutzerName, passwort, alter, isAdmin, zahlungsMethode = "")
+            accountDaten.add(account)
+            return account
 
         }
 
@@ -170,16 +101,17 @@ class LogIn {
             println("Passwort: ")
             var passwort = readln()
 
-            for (account in accountDaten){
-                if (account is KundenAccount){
-                    if (benutzerName == account.benutzername){
-                        if (passwort == account.passwort){
+            for (account in accountDaten) {
+                if (account is KundenAccount) {
+                    if (benutzerName == account.benutzername) {
+                        if (passwort == account.passwort) {
                             return account
-                        }else {
+                        } else {
                             println("Falsches Passwort.")
+                            println("$versuche / 5 versuche.")
                             versuche++
                         }
-                    }else{
+                    } else {
                         println("Dieser Benutzername existiert nicht.")
                     }
                 }
@@ -202,21 +134,20 @@ class LogIn {
             println("Passwort: ")
             var passwort = readln()
 
-            for (account in accountDaten){
-                if (account is ManagerAccount){
-                    if (benutzerName == account.benutzername){
-                        if (passwort == account.passwort){
+            for (account in accountDaten) {
+                if (account is ManagerAccount) {
+                    if (benutzerName == account.benutzername) {
+                        if (passwort == account.passwort) {
                             return account
-                        }else {
+                        } else {
                             println("Falsches Passwort.")
                             versuche++
                         }
-                    }else{
+                    } else {
                         println("Dieser Benutzername existiert nicht.")
                     }
                 }
             }
-
 
 
         }

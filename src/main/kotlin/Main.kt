@@ -6,6 +6,7 @@ fun main() {
     var macherShop = Shop()
     var logIn = LogIn()
 
+
     welcomeScreen(logIn, macherShop)
 
 
@@ -55,6 +56,8 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                         shop.userInterface(kunde)
                         break
 
+                    } else {
+                        continue
                     }
                 }
 
@@ -65,6 +68,8 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                         break
 
 
+                    } else {
+                        continue
                     }
                 }
 
@@ -74,11 +79,12 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                     if (neuerKunde.alter < 12) {
                         println("Sie sind leider zu Jung um einzukaufen.")
                         continue
-                    } else {
+                    } else if (neuerKunde.alter > 12) {
                         shop.userInterface(neuerKunde)
                         break
 
-
+                    } else {
+                        continue
                     }
 
                 }

@@ -3,9 +3,7 @@ class KundenAccount(
     passwort: String,
     var alter: Int,
     var isAdmin: Boolean,
-    var zahlungsMoeglichkeit: String,
-    var pin: String
-
+    var zahlungsMethode: String
 ): Account(benutzerName,passwort) {
 
 
@@ -34,18 +32,21 @@ class KundenAccount(
 
     fun warenKorbAnzeigen() {
 
+        var helper = false
+
         if (warenKorb.isEmpty()) {
             println("Dein Warenkorb ist leer.")
         } else {
             println("Ihr Warenkorb enthält folgende Produkte:")
             warenKorb.forEachIndexed { index, produkt ->
                 println("${index + 1}. ${produkt.name} - ${produkt.preis} EUR")
+                helper = true
             }
         }
         println()
-        println("Aktueller Warenkorb Betrag : ${gesamtWert()}")
+        println("Aktueller Warenkorb Betrag : ${gesamtWert()} EUR")
 
-        while (true) {
+        while (helper) {
 
             println("Möchten Sie einen Artikel entfernen? Ja/Nein.")
 
@@ -103,7 +104,7 @@ class KundenAccount(
                 if (eingabe > 5){
                     throw Exception()
                 }else {
-                    produkt.bewertung += eingabe
+                    produkt.bewertung.add(eingabe)
                 }
 
 

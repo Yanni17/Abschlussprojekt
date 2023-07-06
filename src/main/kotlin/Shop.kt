@@ -760,12 +760,205 @@ class Shop {
         }
     }
 
-    fun managerInterface(manager: ManagerAccount){}
+    fun managerInterface(manager: ManagerAccount) {
 
-    fun warenKorbBezahlen(kunde: KundenAccount){
+        println("Herzlich Willkommen ${manager.benutzername}")
+        var eingabe = 0
 
-        println("")
+        while (true) {
 
+            println(
+                """ 
+            
+            [1] Produkt hinzufügen
+            [2] Produkt entfernen
+            [3] Produkt nachbestellen
+            
+            [4] Ausloggen
+           
+        """.trimIndent()
+            )
+
+            eingabe = readln().toInt()
+
+            when (eingabe) {
+
+                1 -> manager.produktErstellen(alleProdukte)
+                2 -> manager.produktLoeschen(alleProdukte)
+                3 -> manager.produktErstellen(alleProdukte)//TODO punkt 3
+
+
+            }
+
+        }
+    }
+
+    fun warenKorbBezahlen(kunde: KundenAccount) {
+
+        println("Wie möchten Sie bezahlen?")
+        var eingabe = 0
+        while (true) {
+
+            try {
+
+                println(
+                    """
+                
+                [1] PayPal
+                [2] ApplePay
+                [3] Sofort-Überweisung
+                [4] Abbrechen
+                
+            """.trimIndent()
+                )
+
+                eingabe = readln().toInt()
+                if (eingabe > 4) {
+                    throw Exception("")
+                }
+
+                when (eingabe) {
+
+                    1 -> {
+                        println("Sie werden weitergeleitet...")
+                        Thread.sleep(4000)
+                        println("Herzlich Willkommen zu PayPal")
+                        println("Benutzername: ")
+                        var benutzerName = readln()
+                        println("Passwort: ")
+                        var passwort = readln()
+                        if (benutzerName == kunde.benutzername) {
+
+                            if (passwort == kunde.passwort) {
+
+                                println("Der Betrag ist: ${kunde.gesamtWert()} EUR")
+
+                                println()
+
+                                println("Bezahlen? Ja/Nein")
+
+                                var auswahl = readln().lowercase()
+
+                                if (auswahl == "ja") {
+                                    println("Bestellung wird bearbeitet...")
+                                    Thread.sleep(3000)
+                                    println()
+                                    println("Bestellung erfolgreich.")
+                                    kunde.warenKorb.clear()
+                                    break
+
+                                } else {
+                                    println("Sie werden zurückgeleitet.")
+                                    break
+                                }
+
+                            } else {
+                                println("Falsches Passwort.")
+                            }
+                        } else {
+                            println("Es existiert kein Account mit dem Benutzernamen.")
+                            continue
+                        }
+
+                    }
+
+                    2 -> {
+                        println("Sie werden weitergeleitet...")
+                        Thread.sleep(4000)
+                        println("Herzlich Willkommen zu ApplePay")
+                        println("Benutzername: ")
+                        var benutzerName = readln()
+                        println("Passwort: ")
+                        var passwort = readln()
+                        if (benutzerName == kunde.benutzername) {
+
+                            if (passwort == kunde.passwort) {
+
+                                println("Der Betrag ist: ${kunde.gesamtWert()} EUR")
+
+                                println()
+
+                                println("Bezahlen? Ja/Nein")
+
+                                var auswahl = readln().lowercase()
+
+                                if (auswahl == "ja") {
+                                    println("Bestellung wird bearbeitet...")
+                                    Thread.sleep(3000)
+                                    println()
+                                    println("Bestellung erfolgreich.")
+                                    kunde.warenKorb.clear()
+                                    break
+
+                                } else {
+                                    println("Sie werden zurückgeleitet.")
+                                    break
+                                }
+
+                            } else {
+                                println("Falsches Passwort.")
+                            }
+                        } else {
+                            println("Es existiert kein Account mit dem Benutzernamen.")
+                            continue
+                        }
+
+                    }
+
+                    3 -> {
+                        println("Sie werden weitergeleitet...")
+                        Thread.sleep(4000)
+                        println("Herzlich Willkommen zur Sofort-Überweisung")
+                        println("Benutzername: ")
+                        var benutzerName = readln()
+                        println("Passwort: ")
+                        var passwort = readln()
+                        if (benutzerName == kunde.benutzername) {
+
+                            if (passwort == kunde.passwort) {
+
+                                println("Der Betrag ist: ${kunde.gesamtWert()} EUR")
+
+                                println()
+
+                                println("Bezahlen? Ja/Nein")
+
+                                var auswahl = readln().lowercase()
+
+                                if (auswahl == "ja") {
+                                    println("Bestellung wird bearbeitet...")
+                                    Thread.sleep(3000)
+                                    println()
+                                    println("Bestellung erfolgreich.")
+                                    kunde.warenKorb.clear()
+                                    break
+
+                                } else {
+                                    println("Sie werden zurückgeleitet.")
+                                    Thread.sleep(2000)
+                                    break
+                                }
+
+                            } else {
+                                println("Falsches Passwort.")
+                            }
+                        } else {
+                            println("Es existiert kein Account mit dem Benutzernamen.")
+                            continue
+                        }
+                    }
+
+                    4 -> {
+                        break
+                    }
+                }
+
+            } catch (e: Exception) {
+                println("Ungültige Eingabe.")
+            }
+
+
+        }
 
     }
 }
