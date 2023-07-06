@@ -1,7 +1,7 @@
 class Halsketten(
     name: String,
     preis: Double,
-    bewertung: Double,
+    bewertung: MutableList<Double>,
     anzahl: Int,
     var farbe: String
 ) : Accesoires(name, preis, bewertung,anzahl) {

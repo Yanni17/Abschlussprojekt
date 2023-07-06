@@ -11,6 +11,7 @@ class LogIn {
 
         var passwort = ""
         println("Registration!")
+        println()
 
         while (true) {
 
@@ -108,14 +109,14 @@ class LogIn {
                             return account
                         } else {
                             println("Falsches Passwort.")
-                            println("$versuche / 5 versuche.")
                             versuche++
+                            println("$versuche / 5 versuche.")
                         }
-                    } else {
-                        println("Dieser Benutzername existiert nicht.")
                     }
                 }
             }
+            println("Falscher Benutzername!")
+            continue
 
         }
         return null

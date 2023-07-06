@@ -6,6 +6,7 @@ class ManagerAccount(
 
 
     fun alleProdukteAnsehen() {}
+
     fun produktHinzufuegen(produkt: Produkt, shop: Shop) {
 
         shop.alleProdukte.add(produkt)
@@ -134,7 +135,7 @@ class ManagerAccount(
                 1 -> {
                     println("In welcher Größe? z.B 'M' ")
                     groesse = readln().capitalize().first()
-                    var tShirt = Tshirt(name, preis, bewertung, 10, groesse)
+                    var tShirt = Tshirt(name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(tShirt)
                     println("Produkt erfolgreich erstellt.")
                     break
@@ -144,7 +145,7 @@ class ManagerAccount(
                 2 -> {
                     println("In welcher Größe? z.B 'M' ")
                     groesse = readln().capitalize().first()
-                    var pullover = Pullover(name, preis, bewertung, 10, groesse)
+                    var pullover = Pullover(name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(pullover)
                     println("Produkt erfolgreich erstellt.")
                     break
@@ -154,7 +155,7 @@ class ManagerAccount(
                 3 -> {
                     println("Welche Farbe hat das Produkt: ")
                     farbe = readln()
-                    var halskette = Halsketten(name, preis, bewertung, 10, farbe)
+                    var halskette = Halsketten(name, preis, bewertung = mutableListOf(), 10, farbe)
                     alleArtikel.add(halskette)
                     println("Produkt erfolgreich erstellt.")
                     break
@@ -163,7 +164,7 @@ class ManagerAccount(
                 4 -> {
                     println("Welche Farbe hat das Produkt: ")
                     farbe = readln()
-                    var halskette = Armbaender(name, preis, bewertung, 10, farbe)
+                    var halskette = Armbaender(name, preis, bewertung = mutableListOf(), 10, farbe)
                     alleArtikel.add(halskette)
                     println("Produkt erfolgreich erstellt.")
                     break

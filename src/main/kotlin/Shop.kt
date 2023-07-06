@@ -1,18 +1,19 @@
 class Shop {
 
     var alleProdukte = mutableListOf<Produkt>(
-        Tshirt("Áme Noire Classic T-Shirt", 22.99, 0.0, 10, 'M'),
-        Tshirt("Áme Noire Basic T-Shirt", 19.99, 0.0, 10, 'M'),
-        Tshirt("Áme Noire Limited T-Shirt", 39.99, 0.0, 10, 'M'),
-        Pullover("Áme Noire Classic Pullover", 29.99, 0.0, 10, 'M'),
-        Pullover("Áme Noire Basic Pullover", 24.99, 0.0, 10, 'M'),
-        Pullover("Áme Noire Limited Pullover", 49.99, 0.0, 10, 'M'),
-        Halsketten("Áme Noire Edelstahl Halskette", 14.99, 0.0, 10, "Silber"),
-        Halsketten("Áme Noire Vintage Halskette", 18.99, 0.0, 10, "Braun"),
-        Halsketten("Áme Noire Modern Halskette", 21.99, 0.0, 10, "Schwarz"),
-        Armbaender("Áme Noire Edelstahl Armband", 12.99, 0.0, 10, "Schwarz"),
-        Armbaender("Áme Noire Vintage Armband", 16.99, 0.0, 10, "Schwarz"),
-        Armbaender("Áme Noire Modern Armband", 13.99, 0.0, 10, "Braun")
+
+        Tshirt("Áme Noire Classic T-Shirt", 22.99, bewertung = mutableListOf(), 10, 'M'),
+        Tshirt("Áme Noire Basic T-Shirt", 19.99, bewertung = mutableListOf(), 10, 'M'),
+        Tshirt("Áme Noire Limited T-Shirt", 39.99, bewertung = mutableListOf(), 10, 'M'),
+        Pullover("Áme Noire Classic Pullover", 29.99, bewertung = mutableListOf(), 10, 'M'),
+        Pullover("Áme Noire Basic Pullover", 24.99, bewertung = mutableListOf(), 10, 'M'),
+        Pullover("Áme Noire Limited Pullover", 49.99, bewertung = mutableListOf(), 10, 'M'),
+        Halsketten("Áme Noire Edelstahl Halskette", 14.99, bewertung = mutableListOf(), 10, "Silber"),
+        Halsketten("Áme Noire Vintage Halskette", 18.99, bewertung = mutableListOf(), 10, "Braun"),
+        Halsketten("Áme Noire Modern Halskette", 21.99, bewertung = mutableListOf(), 10, "Schwarz"),
+        Armbaender("Áme Noire Edelstahl Armband", 12.99, bewertung = mutableListOf(), 10, "Schwarz"),
+        Armbaender("Áme Noire Vintage Armband", 16.99, bewertung = mutableListOf(), 10, "Schwarz"),
+        Armbaender("Áme Noire Modern Armband", 13.99, bewertung = mutableListOf(), 10, "Braun")
     )
 
     fun shop(kunde: KundenAccount) {

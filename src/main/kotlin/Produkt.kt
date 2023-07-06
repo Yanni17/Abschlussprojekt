@@ -13,7 +13,7 @@ open class Produkt(var name: String, var preis: Double, var bewertung: MutableLi
 
 
     override fun toString(): String {
-        return "${this.name} -- Preis: ${this.preis} EUR -- Bewertung: ${this.bewertung} ⭐️ "
+        return "${this.name} -- Preis: ${this.preis} EUR -- Bewertung: $averageAusrechnen ⭐️"
     }
 
 }
