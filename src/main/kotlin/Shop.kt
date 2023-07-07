@@ -114,6 +114,7 @@ class Shop {
         while (true) {
 
             try {
+                println()
                 println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
 
                 eingabe = readln().lowercase()
@@ -260,6 +261,7 @@ class Shop {
             if (input == "ja") {
 
                 try {
+
                     println("Welches Produkt möchten Sie noch hinzufügen?")
 
                     input2 = readln().toInt()
@@ -748,7 +750,15 @@ class Shop {
 
                     2 -> kunde.warenKorbAnzeigen()
 
-                    3 -> warenKorbBezahlen(kunde)
+                    3 -> {
+                        if (kunde.warenKorb.isEmpty()){
+                            println("Sie haben nichts in Ihrem Warenkorb.")
+                            break
+                        }else {
+
+                            warenKorbBezahlen(kunde)
+                        }
+                    }
 
                     4 -> {
                         helper = false
@@ -768,25 +778,42 @@ class Shop {
 
         while (true) {
 
-            println(
-                """ 
-            
-            [1] Produkt hinzufügen
-            [2] Produkt entfernen
-            [3] Produkt nachbestellen
-            
-            [4] Ausloggen
-           
-        """.trimIndent()
-            )
+            try {
 
-            eingabe = readln().toInt()
+                println(
+                    """ 
+            
+            [1] Alle Produkte ansehen
+            
+            [2] Produkt hinzufügen
+            [3] Produkt entfernen
+            [4] Produkt nachbestellen
+            
+            [5] Ausloggen
+           
+            """.trimIndent()
+                )
+
+                eingabe = readln().toInt()
+
+                if (eingabe > 5) {
+                    throw Exception()
+                }
+
+
+            } catch (e: Exception) {
+                println("Ungültige Eingabe")
+                continue
+            }
+
 
             when (eingabe) {
 
-                1 -> manager.produktErstellen(alleProdukte)
-                2 -> manager.produktLoeschen(alleProdukte)
-                3 -> manager.produktErstellen(alleProdukte)//TODO punkt 3
+                1 -> manager.alleProdukteAnsehen(alleProdukte)
+                2 -> manager.produktErstellen(alleProdukte)
+                3 -> manager.produktLoeschen(alleProdukte)
+                4 -> manager.produktNachbestellen(alleProdukte)
+                5 -> break
 
 
             }
@@ -824,6 +851,7 @@ class Shop {
                         println("Sie werden weitergeleitet...")
                         Thread.sleep(4000)
                         println("Herzlich Willkommen zu PayPal")
+                        println()
                         println("Benutzername: ")
                         var benutzerName = readln()
                         println("Passwort: ")
@@ -832,7 +860,7 @@ class Shop {
 
                             if (passwort == kunde.passwort) {
 
-                                println("Der Betrag ist: ${kunde.gesamtWert()} EUR")
+                                println("Der Betrag ist: %.2f EUR".format(kunde.gesamtWert()))
 
                                 println()
 
@@ -875,7 +903,7 @@ class Shop {
 
                             if (passwort == kunde.passwort) {
 
-                                println("Der Betrag ist: ${kunde.gesamtWert()} EUR")
+                                println("Der Betrag ist: %.2f EUR".format(kunde.gesamtWert()))
 
                                 println()
 
@@ -918,7 +946,7 @@ class Shop {
 
                             if (passwort == kunde.passwort) {
 
-                                println("Der Betrag ist: ${kunde.gesamtWert()} EUR")
+                                println("Der Betrag ist: %.2f EUR".format(kunde.gesamtWert()))
 
                                 println()
 

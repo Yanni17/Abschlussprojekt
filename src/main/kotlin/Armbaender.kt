@@ -7,7 +7,7 @@ class Armbaender(
 ) : Accesoires(name, preis, bewertung,anzahl) {
 
     override fun toString(): String {
-        return super.toString() + "Farbe: $farbe"
+        return super.toString() + "Farbe -> $farbe"
 
     }
 }

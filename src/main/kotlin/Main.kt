@@ -1,4 +1,5 @@
 import kotlin.math.log
+import kotlin.system.exitProcess
 
 
 fun main() {
@@ -29,6 +30,10 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                 [2] Einloggen als Manager
                 
                 [3] Konto erstellen
+                
+                ______________________________
+                
+                [4] Programm beenden
             
             
                 """.trimIndent()
@@ -38,13 +43,13 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
 
                 auswahl = readln().toInt()
 
-                if (auswahl !in 1 until 4) {
+                if (auswahl !in 1 until 5) {
                     throw Exception()
 
                 }
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe. 1 - 3 !")
+                println("Ungültige Eingabe. 1 - 4 !")
                 continue
             }
 
@@ -75,7 +80,6 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
 
                 3 -> {
                     var neuerKunde = login.register()
-                    login.logInKunde()
                     if (neuerKunde.alter < 12) {
                         println("Sie sind leider zu Jung um einzukaufen.")
                         continue
@@ -87,6 +91,10 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                         continue
                     }
 
+                }
+
+                4 -> {
+                    exitProcess(0)
                 }
             }
 

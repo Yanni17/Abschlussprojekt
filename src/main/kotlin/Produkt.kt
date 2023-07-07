@@ -9,11 +9,8 @@ open class Produkt(var name: String, var preis: Double, var bewertung: MutableLi
         }
     }
 
-    fun produktAnzeigen(){}
-
-
     override fun toString(): String {
-        return "${this.name} -- Preis: ${this.preis} EUR -- Bewertung: $averageAusrechnen ⭐️"
+        return "${this.name} -- Preis: ${this.preis} EUR -- Bewertung: %.1f ⭐️".format(averageAusrechnen)
     }
 
 }

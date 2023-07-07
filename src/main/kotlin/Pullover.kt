@@ -8,7 +8,7 @@ class Pullover(
 
 
     override fun toString(): String {
-        return super.toString() +"Größe: $groesse"
+        return super.toString() + "Größe -> $groesse"
     }
 
 }

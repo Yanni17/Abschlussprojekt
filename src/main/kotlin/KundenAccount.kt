@@ -44,7 +44,7 @@ class KundenAccount(
             }
         }
         println()
-        println("Aktueller Warenkorb Betrag : ${gesamtWert()} EUR")
+        println("Aktueller Warenkorb Betrag : %.2f EUR".format(gesamtWert()))
 
         while (helper) {
 
@@ -74,6 +74,7 @@ class KundenAccount(
 
                         var produkt = warenKorb[auswahl2 - 1]
                         produktEnfernen(produkt)
+                        produkt.anzahl++
                         println("Produkt erfolgreich entfernt.")
                         break
                     }

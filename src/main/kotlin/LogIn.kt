@@ -1,8 +1,8 @@
 class LogIn {
 
-
     var accountDaten = mutableListOf<Account>(
-        ManagerAccount("Admin","Jonny123",true)
+        ManagerAccount("Admin", "Jonny123", true),
+        KundenAccount("Yanni","Pechlivanis123",21,false,"")
     )
 
     var isAdmin = false
@@ -23,13 +23,13 @@ class LogIn {
                 for (account in accountDaten) {
                     if (account is KundenAccount) {
                         if (benutzerName == account.benutzername) {
-                            throw Exception("")
+                            throw Exception("Benutzername existiert bereits.")
                         }
                     }
                 }
 
-            }catch (e:Exception){
-                println("Benutzername Existiert bereits.")
+            } catch (e: Exception) {
+                println(e.message)
                 continue
             }
 
@@ -90,7 +90,8 @@ class LogIn {
 
     fun logInKunde(): KundenAccount? {
 
-        println("Einloggen!")
+
+        println("Manager Login!")
         println()
         var versuche = 0
 
@@ -98,7 +99,6 @@ class LogIn {
 
             println("Benutzername: ")
             var benutzerName = readln()
-
             println("Passwort: ")
             var passwort = readln()
 
@@ -110,16 +110,22 @@ class LogIn {
                         } else {
                             println("Falsches Passwort.")
                             versuche++
-                            println("$versuche / 5 versuche.")
+                            println("$versuche / 5 Versuchen.")
                         }
+                    } else {
+                        println("Dieser Benutzername existiert nicht.")
+                        versuche++
+                        println("$versuche / 5 Versuchen.")
                     }
                 }
             }
-            println("Falscher Benutzername!")
-            continue
+
 
         }
+        println("Sie sind gesperrt. Versuchen Sie es in 10 sekunden nochmal.")
+        Thread.sleep(10000)
         return null
+
     }
 
     fun logInManager(): ManagerAccount? {
@@ -143,16 +149,20 @@ class LogIn {
                         } else {
                             println("Falsches Passwort.")
                             versuche++
+                            println("$versuche / 5 Versuchen.")
                         }
                     } else {
                         println("Dieser Benutzername existiert nicht.")
+                        versuche++
+                        println("$versuche / 5 Versuchen.")
                     }
                 }
             }
 
 
         }
-
+        println("Sie sind gesperrt. Versuchen Sie es in 10 sekunden nochmal.")
+        Thread.sleep(10000)
         return null
     }
 

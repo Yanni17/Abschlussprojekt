@@ -5,7 +5,16 @@ class ManagerAccount(
 ) : Account(benutzerName, passwort) {
 
 
-    fun alleProdukteAnsehen() {}
+    fun alleProdukteAnsehen(alleArtikel: MutableList<Produkt>) {
+
+        for((index,produkt) in alleArtikel.withIndex()){
+
+            println("[${index + 1}] $produkt")
+
+        }
+
+
+    }
 
     fun produktHinzufuegen(produkt: Produkt, shop: Shop) {
 
@@ -33,7 +42,7 @@ class ManagerAccount(
 
                 var ausgewaehltesProdukt = alleArtikel[eingabe - 1]
 
-                println("Sind Sie sicher das Sie $ausgewaehltesProdukt entfernen möchten?")
+                println("Sind Sie sicher das Sie $ausgewaehltesProdukt entfernen möchten? Ja / Nein")
 
                 var abfrage = readln().lowercase()
 
@@ -44,7 +53,7 @@ class ManagerAccount(
                     println("Produkt erfolgreich entfernt!")
 
                     break
-                }else {
+                } else {
                     println("Sie werden zurück geleitet!")
                     break
                 }
@@ -62,6 +71,11 @@ class ManagerAccount(
     fun produktErstellen(alleArtikel: MutableList<Produkt>) {
 
         var auswahl = 0
+        var preis: Double
+        var bewertung: Double
+        var farbe: String
+        var groesse: Char
+
 
         while (true) {
 
@@ -81,7 +95,7 @@ class ManagerAccount(
 
                 auswahl = readln().toInt()
 
-                if (auswahl !in 1 until 5) {
+                if (auswahl !in 1..4) {
                     throw Exception("")
                 }
 
@@ -95,17 +109,13 @@ class ManagerAccount(
 
             println("Wie heißt das Produkt: ")
             var name = readln()
-            var preis: Double
-            var bewertung: Double
-            var farbe: String
-            var groesse: Char
+
 
             while (true) {
                 try {
 
                     println("Wie viel kostet das Produkt : ")
                     preis = readln().toDouble()
-
                     break
 
                 } catch (e: Exception) {
@@ -114,6 +124,7 @@ class ManagerAccount(
 
             }
             while (true) {
+
                 try {
 
                     println("Wie ist die durchschnitts Bewertung des Produktes : ")
@@ -171,9 +182,65 @@ class ManagerAccount(
 
                 }
             }
-
-
         }
+
+
+    }
+
+    fun produktNachbestellen(alleArtikel: MutableList<Produkt>){
+
+        var auswahl = 0
+
+        println("Aktuelle Produkte:")
+        println()
+
+        for ((index,produkt) in alleArtikel.withIndex()){
+            println("[${index + 1}] $produkt    Vorhanden: ${produkt.anzahl}")
+        }
+        println()
+        println("Welches Produkt möchten Sie nachbestellen?")
+
+        while (true){
+
+            try {
+
+                auswahl = readln().toInt()
+
+                if (auswahl > alleArtikel.size){
+
+                    throw Exception()
+
+                }else break
+
+            }catch (e: Exception){
+                println("Ungültige Eingabe.")
+            }
+        }
+
+        var ausgewaehltesProdukt = alleArtikel[auswahl - 1]
+
+        println("Wie viele möchten Sie davon bestellen?")
+        println()
+        var anzahl = 0
+
+        while (true){
+
+            try {
+
+                anzahl = readln().toInt()
+                break
+
+            }catch (e:Exception){
+                println("Ungültige Eingabe")
+                continue
+            }
+        }
+
+        ausgewaehltesProdukt.anzahl += anzahl
+        println("Sie haben erfolgreich $ausgewaehltesProdukt $anzahl x nachbestellt.")
+
+
+
     }
 
 

@@ -8,7 +8,7 @@ class Halsketten(
 
 
     override fun toString(): String {
-        return super.toString() + "Farbe: $farbe"
+        return super.toString() + "Farbe -> $farbe"
     }
 
 }

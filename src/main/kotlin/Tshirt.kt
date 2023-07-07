@@ -7,7 +7,7 @@ class Tshirt(
 ) : Kleidung(name, preis, bewertung,anzahl) {
 
     override fun toString(): String {
-        return super.toString() +"Größe: $groesse"
+        return super.toString() + "Größe -> $groesse"
     }
 
 
