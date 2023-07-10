@@ -1,7 +1,6 @@
 class ManagerAccount(
     benutzerName: String,
     passwort: String,
-    var isAdmin: Boolean
 ) : Account(benutzerName, passwort) {
 
 
@@ -28,7 +27,7 @@ class ManagerAccount(
             println("[${index + 1}] $produkt")
         }
         println()
-        println("Welches Produkt soll aus dem Sortiment genommen werden?")
+        println("$yellow Welches Produkt soll aus dem Sortiment genommen werden?$reset")
         var eingabe = 0
 
         while (true) {
@@ -42,24 +41,25 @@ class ManagerAccount(
 
                 var ausgewaehltesProdukt = alleArtikel[eingabe - 1]
 
-                println("Sind Sie sicher das Sie $ausgewaehltesProdukt entfernen möchten? Ja / Nein")
+                println("$yellow Sind Sie sicher das Sie $ausgewaehltesProdukt entfernen möchten? Ja / Nein $reset")
 
                 var abfrage = readln().lowercase()
 
                 if (abfrage == "ja") {
 
                     alleArtikel.remove(ausgewaehltesProdukt)
-
-                    println("Produkt erfolgreich entfernt!")
+                    Thread.sleep(2000)
+                    println("$green Produkt erfolgreich entfernt!$reset")
 
                     break
                 } else {
                     println("Sie werden zurück geleitet!")
+                    Thread.sleep(2000)
                     break
                 }
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe")
+                println("$red Ungültige Eingabe$reset")
             }
 
 
@@ -79,10 +79,11 @@ class ManagerAccount(
 
         while (true) {
 
+            println("$yellow Welches Produkt möchten Sie erstellen?$reset")
+
             println(
                 """
-            Welches Produkt möchten Sie erstellen?
-        
+                    
             [1] Tshirt
             [2] Pullover
             [3] Halskette
@@ -102,24 +103,27 @@ class ManagerAccount(
 
             } catch (e: Exception) {
 
-                println("Ungültige Eingabe")
+                println("$red Ungültige Eingabe$reset")
                 continue
 
             }
 
-            println("Wie heißt das Produkt: ")
+            println("$yellow Von welcher Marke ist das Produkt:$reset")
+            var marke = readln()
+
+            println("$yellow Wie heißt das Produkt:$reset")
             var name = readln()
 
 
             while (true) {
                 try {
 
-                    println("Wie viel kostet das Produkt : ")
+                    println("$yellow Wie viel kostet das Produkt:$reset ")
                     preis = readln().toDouble()
                     break
 
                 } catch (e: Exception) {
-                    println("Ungültige Eingabe")
+                    println("$red Ungültige Eingabe$reset")
                 }
 
             }
@@ -127,16 +131,18 @@ class ManagerAccount(
 
                 try {
 
-                    println("Wie ist die durchschnitts Bewertung des Produktes : ")
+                    println("$yellow Wie ist die durchschnitts Bewertung des Produktes:$reset ")
                     bewertung = readln().toDouble()
+
                     if (bewertung > 5.0) {
-                        throw Exception("")
+                        throw Exception("$red Maximal 5.0$reset")
                     }
 
                     break
 
                 } catch (e: Exception) {
-                    println("Ungültige Eingabe. Maximal Bewertung: 5.0")
+                    println(e.message)
+                    println("$red Ungültige Eingabe.$reset")
                 }
 
             }
@@ -144,40 +150,44 @@ class ManagerAccount(
             when (auswahl) {
 
                 1 -> {
-                    println("In welcher Größe? z.B 'M' ")
+                    println("$yellow In welcher Größe? z.B 'M'$reset ")
                     groesse = readln().capitalize().first()
-                    var tShirt = Tshirt(name, preis, bewertung = mutableListOf(), 10, groesse)
+                    var tShirt = Tshirt(marke, name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(tShirt)
-                    println("Produkt erfolgreich erstellt.")
+                    Thread.sleep(2000)
+                    println("$green Produkt erfolgreich erstellt.$reset")
                     break
 
                 }
 
                 2 -> {
-                    println("In welcher Größe? z.B 'M' ")
+                    println("$yellow In welcher Größe? z.B 'M'$reset ")
                     groesse = readln().capitalize().first()
-                    var pullover = Pullover(name, preis, bewertung = mutableListOf(), 10, groesse)
+                    var pullover = Pullover(marke, name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(pullover)
-                    println("Produkt erfolgreich erstellt.")
+                    Thread.sleep(2000)
+                    println("$green Produkt erfolgreich erstellt.$reset")
                     break
 
                 }
 
                 3 -> {
-                    println("Welche Farbe hat das Produkt: ")
+                    println("$yellow Welche Farbe hat das Produkt:$reset ")
                     farbe = readln()
-                    var halskette = Halsketten(name, preis, bewertung = mutableListOf(), 10, farbe)
+                    var halskette = Halskette(marke, name, preis, bewertung = mutableListOf(), 10, farbe)
                     alleArtikel.add(halskette)
-                    println("Produkt erfolgreich erstellt.")
+                    Thread.sleep(2000)
+                    println("$green Produkt erfolgreich erstellt.$reset")
                     break
                 }
 
                 4 -> {
-                    println("Welche Farbe hat das Produkt: ")
+                    println("$yellow Welche Farbe hat das Produkt:$reset ")
                     farbe = readln()
-                    var halskette = Armbaender(name, preis, bewertung = mutableListOf(), 10, farbe)
-                    alleArtikel.add(halskette)
-                    println("Produkt erfolgreich erstellt.")
+                    var armband = Armband(marke, name, preis, bewertung = mutableListOf(), 10, farbe)
+                    alleArtikel.add(armband)
+                    Thread.sleep(2000)
+                    println("$green Produkt erfolgreich erstellt.$reset")
                     break
 
                 }
@@ -191,14 +201,11 @@ class ManagerAccount(
 
         var auswahl = 0
 
-        println("Aktuelle Produkte:")
-        println()
-
         for ((index,produkt) in alleArtikel.withIndex()){
             println("[${index + 1}] $produkt    Vorhanden: ${produkt.anzahl}")
         }
         println()
-        println("Welches Produkt möchten Sie nachbestellen?")
+        println("$yellow Welches Produkt möchten Sie nachbestellen?$reset")
 
         while (true){
 
@@ -213,14 +220,13 @@ class ManagerAccount(
                 }else break
 
             }catch (e: Exception){
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
         }
 
         var ausgewaehltesProdukt = alleArtikel[auswahl - 1]
 
-        println("Wie viele möchten Sie davon bestellen?")
-        println()
+        println("$yellow Wie viele möchten Sie davon bestellen?$reset")
         var anzahl = 0
 
         while (true){
@@ -231,13 +237,14 @@ class ManagerAccount(
                 break
 
             }catch (e:Exception){
-                println("Ungültige Eingabe")
+                println("$red Ungültige Eingabe$reset")
                 continue
             }
         }
 
+        Thread.sleep(2000)
         ausgewaehltesProdukt.anzahl += anzahl
-        println("Sie haben erfolgreich $ausgewaehltesProdukt $anzahl x nachbestellt.")
+        println("$green Sie haben erfolgreich $ausgewaehltesProdukt $anzahl x nachbestellt.$reset")
 
 
 

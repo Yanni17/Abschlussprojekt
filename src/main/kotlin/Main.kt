@@ -7,9 +7,7 @@ fun main() {
     var macherShop = Shop()
     var logIn = LogIn()
 
-
     welcomeScreen(logIn, macherShop)
-
 
 }
 
@@ -21,19 +19,21 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
 
         while (true) {
 
-            println("Herzlich Willkommen im Áme Noire Store.")
+            println()
             println(
                 """
+                _____________________________
+                        𝑊𝐸𝐿𝐶𝑂𝑀𝐸!
             
-                [1] Einloggen als Kunde
+                1) Einloggen als Kunde
                 
-                [2] Einloggen als Manager
+                2) Einloggen als Manager
                 
-                [3] Konto erstellen
+                3) Konto erstellen
                 
-                ______________________________
+                _____________________________
                 
-                [4] Programm beenden
+                4) Programm beenden
             
             
                 """.trimIndent()
@@ -49,7 +49,7 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                 }
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe. 1 - 4 !")
+                println("$red Ungültige Eingabe. 1 - 4 ! $reset")
                 continue
             }
 
@@ -81,7 +81,7 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                 3 -> {
                     var neuerKunde = login.register()
                     if (neuerKunde.alter < 12) {
-                        println("Sie sind leider zu Jung um einzukaufen.")
+                        println("$red Sie sind leider zu Jung um einzukaufen.$reset")
                         continue
                     } else if (neuerKunde.alter > 12) {
                         shop.userInterface(neuerKunde)
@@ -104,3 +104,6 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
 }
 
 
+// todo : nur passwort bei login
+//todo : nur nach sterne nochmal fragen
+//todo: Benutzername muss mindest 5 zeichen

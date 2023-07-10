@@ -1,29 +1,30 @@
 class LogIn {
 
     var accountDaten = mutableListOf<Account>(
-        ManagerAccount("Admin", "Jonny123", true),
-        KundenAccount("Yanni","Pechlivanis123",21,false,"")
+        ManagerAccount("Admin", "Jonny123",),
+        KundenAccount("Yanni","Pechlivanis123",21,"")
     )
-
-    var isAdmin = false
 
     fun register(): KundenAccount {
 
         var passwort = ""
-        println("Registration!")
-        println()
+        println("""
+            _____________________________
+                   Ｒｅｇｉｓｔｅｒ
+                   
+        """.trimIndent())
 
         while (true) {
 
             println("Benutzername:")
-            var benutzerName = readln()
+            var benutzerName = readln().trim()
 
             try {
 
                 for (account in accountDaten) {
                     if (account is KundenAccount) {
                         if (benutzerName == account.benutzername) {
-                            throw Exception("Benutzername existiert bereits.")
+                            throw Exception("$red Benutzername existiert bereits.$reset")
                         }
                     }
                 }
@@ -44,17 +45,17 @@ class LogIn {
                         if (passwort.length >= minLength) {
                             break
                         } else {
-                            println("Das Passwort muss mindestens 10 Zeichen haben.")
+                            println("$red Das Passwort muss mindestens 10 Zeichen haben.$reset")
                             continue
                         }
                     } else {
-                        println("Der Anfangsbuchstabe muss Groß sein.")
+                        println("$red Der Anfangsbuchstabe muss Groß sein.$reset")
                         continue
                     }
                 }
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe")
+                println("$red Ungültige Eingabe$reset")
             }
 
             var alter = 0
@@ -70,17 +71,22 @@ class LogIn {
                     if (alter < 0 || alter !in 1..100) {
                         println("Sind Sie ein Mensch? 😮")
                         continue
-                    } else {
+                    } else if (alter < 12) {
+                        println("$red Sie sind leider zu Jung um sich zu registrieren.$reset")
+                        continue
+                    }else {
                         break
                     }
 
                 } catch (e: Exception) {
-                    println("Ungültige Eingabe.")
+                    println("$red Ungültige Eingabe.$reset")
 
                 }
             }
 
-            var account = KundenAccount(benutzerName, passwort, alter, isAdmin, zahlungsMethode = "")
+            println()
+            println("$green Registration Erfolgreich.$reset")
+            var account = KundenAccount(benutzerName, passwort, alter, zahlungsMethode = "")
             accountDaten.add(account)
             return account
 
@@ -90,9 +96,11 @@ class LogIn {
 
     fun logInKunde(): KundenAccount? {
 
-
-        println("Manager Login!")
-        println()
+        println("""
+            _____________________________
+                      Ｌｏｇｉｎ
+                        
+        """.trimIndent())
         var versuche = 0
 
         while (versuche < 5) {
@@ -106,23 +114,24 @@ class LogIn {
                 if (account is KundenAccount) {
                     if (benutzerName == account.benutzername) {
                         if (passwort == account.passwort) {
+                            println()
+                            println("$green Login Erfolgreich$reset")
                             return account
                         } else {
-                            println("Falsches Passwort.")
+                            println("$red Falsches Passwort.$reset")
                             versuche++
                             println("$versuche / 5 Versuchen.")
                         }
                     } else {
-                        println("Dieser Benutzername existiert nicht.")
-                        versuche++
-                        println("$versuche / 5 Versuchen.")
+                        println("$red Dieser Benutzername existiert nicht.$reset")
+
                     }
                 }
             }
 
 
         }
-        println("Sie sind gesperrt. Versuchen Sie es in 10 sekunden nochmal.")
+        println("$red Sie sind gesperrt. Versuchen Sie es in 10 sekunden nochmal.$reset")
         Thread.sleep(10000)
         return null
 
@@ -130,14 +139,17 @@ class LogIn {
 
     fun logInManager(): ManagerAccount? {
 
-        println("Manager Login!")
-        println()
+        println("""
+            _____________________________
+                 Ａｄｍｉｎ Ｌｏｇｉｎ
+                        
+        """.trimIndent())
         var versuche = 0
 
         while (versuche < 5) {
 
             println("Benutzername: ")
-            var benutzerName = readln()
+            var benutzerName = readln().trim()
             println("Passwort: ")
             var passwort = readln()
 
@@ -145,14 +157,16 @@ class LogIn {
                 if (account is ManagerAccount) {
                     if (benutzerName == account.benutzername) {
                         if (passwort == account.passwort) {
+                            println()
+                            println("$green Login Erfolgreich.$reset")
                             return account
                         } else {
-                            println("Falsches Passwort.")
+                            println("$red Falsches Passwort.$reset")
                             versuche++
                             println("$versuche / 5 Versuchen.")
                         }
                     } else {
-                        println("Dieser Benutzername existiert nicht.")
+                        println("$red Dieser Benutzername existiert nicht.$reset")
                         versuche++
                         println("$versuche / 5 Versuchen.")
                     }

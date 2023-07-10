@@ -1,14 +1,15 @@
 class Pullover(
+    marke: String,
     name: String,
     preis: Double,
     bewertung: MutableList<Double>,
     anzahl: Int,
     var groesse: Char
-) : Kleidung(name, preis, bewertung,anzahl) {
+) : Kleidung(marke, name, preis, bewertung,anzahl) {
 
 
     override fun toString(): String {
-        return super.toString() + "Größe -> $groesse"
+        return super.toString() + "| Größe - $groesse"
     }
 
 }

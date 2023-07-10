@@ -1,14 +1,15 @@
-class Halsketten(
+class Halskette(
+    marke: String,
     name: String,
     preis: Double,
     bewertung: MutableList<Double>,
     anzahl: Int,
     var farbe: String
-) : Accesoires(name, preis, bewertung,anzahl) {
+) : Accesoires(marke, name, preis, bewertung,anzahl) {
 
 
     override fun toString(): String {
-        return super.toString() + "Farbe -> $farbe"
+        return super.toString() + "| Farbe - $farbe"
     }
 
 }

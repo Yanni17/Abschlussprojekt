@@ -2,9 +2,8 @@ class KundenAccount(
     benutzerName: String,
     passwort: String,
     var alter: Int,
-    var isAdmin: Boolean,
     var zahlungsMethode: String
-): Account(benutzerName,passwort) {
+) : Account(benutzerName, passwort) {
 
 
     var warenKorb = mutableListOf<Produkt>()
@@ -36,10 +35,15 @@ class KundenAccount(
 
         if (warenKorb.isEmpty()) {
             println("Dein Warenkorb ist leer.")
+            Thread.sleep(2000)
         } else {
-            println("Ihr Warenkorb enthält folgende Produkte:")
+            println("""
+                _____________________________
+                          𝘞𝘈𝘙𝘌𝘕𝘒𝘖𝘙𝘉
+                          
+            """.trimIndent())
             warenKorb.forEachIndexed { index, produkt ->
-                println("${index + 1}. ${produkt.name} - ${produkt.preis} EUR")
+                println("${index + 1}) $produkt")
                 helper = true
             }
         }
@@ -48,7 +52,7 @@ class KundenAccount(
 
         while (helper) {
 
-            println("Möchten Sie einen Artikel entfernen? Ja/Nein.")
+            println("$yellow Möchten Sie einen Artikel entfernen? Ja/Nein.$reset")
 
             var auswahl = readln().lowercase()
 
@@ -60,7 +64,7 @@ class KundenAccount(
                     for ((index, produkt) in warenKorb.withIndex()) {
                         println("[${index + 1}] $produkt")
                     }
-                    println("Welches Produkt möchten Sie entfernen?")
+                    println("$yellow Welches Produkt möchten Sie entfernen?$reset")
 
                     var auswahl2 = 0
 
@@ -68,14 +72,14 @@ class KundenAccount(
 
                     if (auswahl2 > warenKorb.size) {
 
-                        throw Exception("Das haben Sie nicht im Warenkorb.")
+                        throw Exception("$red Das haben Sie nicht im Warenkorb.$reset")
 
                     } else {
 
                         var produkt = warenKorb[auswahl2 - 1]
                         produktEnfernen(produkt)
                         produkt.anzahl++
-                        println("Produkt erfolgreich entfernt.")
+                        println("$green Produkt erfolgreich entfernt.$reset")
                         break
                     }
 
@@ -83,36 +87,53 @@ class KundenAccount(
                 } else if (auswahl == "nein") {
                     break
                 } else {
-                    throw Exception("Ja oder Nein.!")
+                    throw Exception("$red Ja oder Nein.!$reset")
                 }
-            }catch (e:Exception){
-                println("Ungültige Eingabe!")
+            } catch (e: Exception) {
+                println("$red Ungültige Eingabe!$reset")
                 e.message
             }
         }
     }
 
-    fun produktBewerten(produkt: Produkt) {
+    fun produktBewerten(alleArtikel: MutableList<Produkt>) {
 
-        println("Wie viele Sterne möchten Sie dem Produkt geben?")
-        var eingabe = 0.00
+        var auswahl = ""
 
-        while (true){
-
+        for ((index, produkt) in alleArtikel.withIndex()) {
+            println("[${index + 1}] $produkt")
+        }
+        while (true) {
             try {
 
-                eingabe = readln().toDouble()
-                if (eingabe > 5){
-                    throw Exception()
-                }else {
-                    produkt.bewertung.add(eingabe)
+
+                println("$yellow Welches Produkt möchten Sie bewerten?$reset")
+
+                var eingabe = readln().toInt()
+                if (eingabe > alleArtikel.size) {
+                    throw Exception("$red Ungültige Zahl.$reset")
+                } else {
+                    var ausgewaehltesProdukt = alleArtikel[eingabe - 1]
+                    println("$yellow Wie viele Sterne möchten Sie dem Produkt geben?$reset")
+                    var bewertung = readln().toDouble()
+                    if (bewertung > 5) {
+                        throw Exception("$red Maximal 5 Sterne.$reset")
+                    } else {
+                        ausgewaehltesProdukt.bewertung.add(bewertung)
+                        ausgewaehltesProdukt.averageAusrechnen = ausgewaehltesProdukt.bewertung.average()
+                        println("$green Vielen Dank für Ihre Bewertung.$reset")
+                        Thread.sleep(2000)
+                        break
+
+                    }
+
                 }
 
 
-            }catch (e:Exception){
-                println("Maximal 5.0!")
+            } catch (e: Exception) {
+                println(e.message)
+                continue
             }
-
         }
 
     }

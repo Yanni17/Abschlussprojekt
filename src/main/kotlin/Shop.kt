@@ -2,18 +2,18 @@ class Shop {
 
     var alleProdukte = mutableListOf<Produkt>(
 
-        Tshirt("Áme Noire Classic T-Shirt", 22.99, bewertung = mutableListOf(), 10, 'M'),
-        Tshirt("Áme Noire Basic T-Shirt", 19.99, bewertung = mutableListOf(), 10, 'M'),
-        Tshirt("Áme Noire Limited T-Shirt", 39.99, bewertung = mutableListOf(), 10, 'M'),
-        Pullover("Áme Noire Classic Pullover", 29.99, bewertung = mutableListOf(), 10, 'M'),
-        Pullover("Áme Noire Basic Pullover", 24.99, bewertung = mutableListOf(), 10, 'M'),
-        Pullover("Áme Noire Limited Pullover", 49.99, bewertung = mutableListOf(), 10, 'M'),
-        Halsketten("Áme Noire Edelstahl Halskette", 14.99, bewertung = mutableListOf(), 10, "Silber"),
-        Halsketten("Áme Noire Vintage Halskette", 18.99, bewertung = mutableListOf(), 10, "Braun"),
-        Halsketten("Áme Noire Modern Halskette", 21.99, bewertung = mutableListOf(), 10, "Schwarz"),
-        Armbaender("Áme Noire Edelstahl Armband", 12.99, bewertung = mutableListOf(), 10, "Schwarz"),
-        Armbaender("Áme Noire Vintage Armband", 16.99, bewertung = mutableListOf(), 10, "Schwarz"),
-        Armbaender("Áme Noire Modern Armband", 13.99, bewertung = mutableListOf(), 10, "Braun")
+        Tshirt("Áme Noire","Classic T-Shirt", 22.99, bewertung = mutableListOf(), 10, 'M'),
+        Tshirt("Áme Noire","Basic T-Shirt", 19.99, bewertung = mutableListOf(), 10, 'M'),
+        Tshirt("Áme Noire","Limited T-Shirt", 39.99, bewertung = mutableListOf(), 10, 'M'),
+        Pullover("Áme Noire","Classic Pullover", 29.99, bewertung = mutableListOf(), 10, 'M'),
+        Pullover("Áme Noire","Basic Pullover", 24.99, bewertung = mutableListOf(), 10, 'M'),
+        Pullover("Áme Noire","Limited Pullover", 49.99, bewertung = mutableListOf(), 10, 'M'),
+        Halskette("Áme Noire","Edelstahl Halskette", 14.99, bewertung = mutableListOf(), 10, "Silber"),
+        Halskette("Áme Noire","Vintage Halskette", 18.99, bewertung = mutableListOf(), 10, "Braun"),
+        Halskette("Áme Noire","Modern Halskette", 21.99, bewertung = mutableListOf(), 10, "Schwarz"),
+        Armband("Áme Noire","Edelstahl Armband", 12.99, bewertung = mutableListOf(), 10, "Schwarz"),
+        Armband("Áme Noire","Vintage Armband", 16.99, bewertung = mutableListOf(), 10, "Schwarz"),
+        Armband("Áme Noire","Modern Armband", 13.99, bewertung = mutableListOf(), 10, "Braun")
     )
 
     fun shop(kunde: KundenAccount) {
@@ -24,8 +24,6 @@ class Shop {
         println()
 
         while (true) {
-
-            println("Möchten Sie Die Produkte Filtern / Sortieren?")
 
             println(
                 """
@@ -115,26 +113,26 @@ class Shop {
 
             try {
                 println()
-                println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
+                println("$yellow Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein$reset")
 
                 eingabe = readln().lowercase()
 
                 if (eingabe == "ja") {
 
-                    println("Welches Produkt möchten Sie hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > sortierteListe.size) {
-                        throw Exception("Das Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("Das Produkt ist leider Ausverkauft.")
+                            println("$red Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -148,7 +146,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
         }
@@ -158,35 +156,35 @@ class Shop {
 
         while (nochEinProduktAbfrage) {
 
-            println("Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein")
+            println("$yellow Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein$reset")
 
             var input = readln().lowercase()
 
             if (input == "ja") {
 
                 try {
-                    println("Welches Produkt möchten Sie noch hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie noch hinzufügen?$reset")
 
                     input2 = readln().toInt()
                     if (input2 > sortierteListe.size) {
 
-                        throw Exception("Dieses Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("Das Produkt ist leider ausverkauft.")
+                            println("$red Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige eingabe. ")
+                    println(e.message)
                 }
             } else {
                 break
@@ -211,26 +209,26 @@ class Shop {
         while (true) {
 
             try {
-                println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
+                println("$yellow Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein$reset")
 
                 eingabe = readln().lowercase()
 
                 if (eingabe == "ja") {
 
-                    println("Welches Produkt möchten Sie hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > sortierteListe.size) {
-                        throw Exception("Das Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("Das Produkt ist leider Ausverkauft.")
+                            println("$red Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -254,7 +252,7 @@ class Shop {
 
         while (nochEinProduktAbfrage) {
 
-            println("Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein")
+            println("$yellow Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein$reset")
 
             var input = readln().lowercase()
 
@@ -262,28 +260,28 @@ class Shop {
 
                 try {
 
-                    println("Welches Produkt möchten Sie noch hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie noch hinzufügen?$reset")
 
                     input2 = readln().toInt()
                     if (input2 > sortierteListe.size) {
 
-                        throw Exception("Dieses Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("Das Produkt ist leider ausverkauft.")
+                            println("$red Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige eingabe. ")
+                    println("$red Ungültige eingabe.$reset")
                 }
             } else {
                 break
@@ -315,26 +313,26 @@ class Shop {
         while (true) {
 
             try {
-                println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
+                println("$yellow Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein$reset")
 
                 eingabe = readln().lowercase()
 
                 if (eingabe == "ja") {
 
-                    println("Welches Produkt möchten Sie hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("Das Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("Das Produkt ist leider Ausverkauft.")
+                            println("$red Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -348,7 +346,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
         }
@@ -358,35 +356,35 @@ class Shop {
 
         while (nochEinProduktAbfrage) {
 
-            println("Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein")
+            println("$yellow Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein$reset")
 
             var input = readln().lowercase()
 
             if (input == "ja") {
 
                 try {
-                    println("Welches Produkt möchten Sie noch hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie noch hinzufügen?$reset")
 
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("Dieses Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("Das Produkt ist leider ausverkauft.")
+                            println("$red Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige eingabe. ")
+                    println("$red Ungültige eingabe.$reset")
                 }
             } else {
                 break
@@ -419,26 +417,26 @@ class Shop {
         while (true) {
 
             try {
-                println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
+                println("$yellow Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein$reset")
 
                 eingabe = readln().lowercase()
 
                 if (eingabe == "ja") {
 
-                    println("Welches Produkt möchten Sie hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("Das Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("Das Produkt ist leider Ausverkauft.")
+                            println("$red Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -452,7 +450,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
         }
@@ -462,35 +460,35 @@ class Shop {
 
         while (nochEinProduktAbfrage) {
 
-            println("Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein")
+            println("$yellow Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein$reset")
 
             var input = readln().lowercase()
 
             if (input == "ja") {
 
                 try {
-                    println("Welches Produkt möchten Sie noch hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie noch hinzufügen?$reset")
 
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("Dieses Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("Das Produkt ist leider ausverkauft.")
+                            println("$red Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige eingabe. ")
+                    println("$red Ungültige eingabe.$reset")
                 }
             } else {
                 break
@@ -504,10 +502,10 @@ class Shop {
 
     fun filterNachHalsketten(kunde: KundenAccount) {
 
-        var gefilterteListe = mutableListOf<Halsketten>()
+        var gefilterteListe = mutableListOf<Halskette>()
 
         for (produkt in alleProdukte) {
-            if (produkt is Halsketten) {
+            if (produkt is Halskette) {
                 gefilterteListe.add(produkt)
             }
         }
@@ -523,26 +521,26 @@ class Shop {
         while (true) {
 
             try {
-                println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
+                println("$yellow Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein$reset")
 
                 eingabe = readln().lowercase()
 
                 if (eingabe == "ja") {
 
-                    println("Welches Produkt möchten Sie hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("Das Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("Das Produkt ist leider Ausverkauft.")
+                            println("$red Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -556,7 +554,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
         }
@@ -566,35 +564,35 @@ class Shop {
 
         while (nochEinProduktAbfrage) {
 
-            println("Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein")
+            println("$yellow Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein$reset")
 
             var input = readln().lowercase()
 
             if (input == "ja") {
 
                 try {
-                    println("Welches Produkt möchten Sie noch hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie noch hinzufügen?$reset")
 
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("Dieses Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("Das Produkt ist leider ausverkauft.")
+                            println("$red Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige eingabe. ")
+                    println("$red Ungültige eingabe.$reset ")
                 }
             } else {
                 break
@@ -606,10 +604,10 @@ class Shop {
 
     fun filterNachArmbaender(kunde: KundenAccount) {
 
-        var gefilterteListe = mutableListOf<Armbaender>()
+        var gefilterteListe = mutableListOf<Armband>()
 
         for (produkt in alleProdukte) {
-            if (produkt is Armbaender) {
+            if (produkt is Armband) {
                 gefilterteListe.add(produkt)
             }
         }
@@ -625,26 +623,26 @@ class Shop {
         while (true) {
 
             try {
-                println("Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein")
+                println("$yellow Möchten Sie ein Produkt in Ihren Warenkorb tun? Ja/Nein$reset")
 
                 eingabe = readln().lowercase()
 
                 if (eingabe == "ja") {
 
-                    println("Welches Produkt möchten Sie hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("Das Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("Das Produkt ist leider Ausverkauft.")
+                            println("$red Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -658,7 +656,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
         }
@@ -668,35 +666,35 @@ class Shop {
 
         while (nochEinProduktAbfrage) {
 
-            println("Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein")
+            println("$yellow Möchten Sie ein weiteres Produkt hinzufügen? Ja/Nein$reset")
 
             var input = readln().lowercase()
 
             if (input == "ja") {
 
                 try {
-                    println("Welches Produkt möchten Sie noch hinzufügen?")
+                    println("$yellow Welches Produkt möchten Sie noch hinzufügen?$reset")
 
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("Dieses Produkt haben wir nicht in unserem Sortiment.")
+                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("${produkt.name} wurde erfolgreich hinzugefügt.")
+                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("Das Produkt ist leider ausverkauft.")
+                            println("$red Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige eingabe. ")
+                    println("$red Ungültige eingabe.$reset ")
                 }
             } else {
                 break
@@ -708,8 +706,6 @@ class Shop {
 
     fun userInterface(kunde: KundenAccount) {
 
-        println("Herzlich Willkommen ${kunde.benutzername}")
-
         var eingabe = 0
         var helper = true
 
@@ -719,14 +715,20 @@ class Shop {
 
                 println(
                     """
-            
-                [1] Shop
+                _____________________________
+                        𝐴́𝑀𝐸 𝑁𝑂𝐼𝑅𝐸.
+                        
+                1) Shop
                 
-                [2] Warenkorb ansehen
+                2) Warenkorb ansehen
                 
-                [3] Warenkorb bezahlen
+                3) Warenkorb bezahlen
                 
-                [4] Ausloggen
+                4) Produkt bewerten
+                
+                _____________________________
+                
+                5) Ausloggen
                 
              
                 """.trimIndent()
@@ -735,13 +737,13 @@ class Shop {
                 try {
 
                     eingabe = readln().toInt()
-                    if (eingabe !in 1..4) {
+                    if (eingabe !in 1..5) {
                         throw Exception()
                     }
 
 
                 } catch (e: Exception) {
-                    println("Ungültige Eingabe. 1 - 4 !")
+                    println("$red Ungültige Eingabe. 1 - 4 !$reset")
                 }
 
                 when (eingabe) {
@@ -753,6 +755,7 @@ class Shop {
                     3 -> {
                         if (kunde.warenKorb.isEmpty()){
                             println("Sie haben nichts in Ihrem Warenkorb.")
+                            Thread.sleep(2000)
                             break
                         }else {
 
@@ -760,7 +763,10 @@ class Shop {
                         }
                     }
 
-                    4 -> {
+                    4 -> kunde.produktBewerten(alleProdukte)
+
+
+                    5 -> {
                         helper = false
                         break
                     }
@@ -773,7 +779,6 @@ class Shop {
 
     fun managerInterface(manager: ManagerAccount) {
 
-        println("Herzlich Willkommen ${manager.benutzername}")
         var eingabe = 0
 
         while (true) {
@@ -781,17 +786,25 @@ class Shop {
             try {
 
                 println(
-                    """ 
-            
-            [1] Alle Produkte ansehen
-            
-            [2] Produkt hinzufügen
-            [3] Produkt entfernen
-            [4] Produkt nachbestellen
-            
-            [5] Ausloggen
-           
-            """.trimIndent()
+                    """
+                _____________________________
+                        𝐴́𝑀𝐸 𝑁𝑂𝐼𝑅𝐸.
+                          𝐴𝑑𝑚𝑖𝑛
+                        
+                1) Alle Produkte ansehen
+                
+                2) Produkt erstellen
+                
+                3) Produkt löschen
+                
+                4) Produkt nachbestellen
+                
+                _____________________________
+                
+                5) Ausloggen
+                
+             
+                """.trimIndent()
                 )
 
                 eingabe = readln().toInt()
@@ -802,7 +815,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe")
+                println("$red Ungültige Eingabe$reset")
                 continue
             }
 
@@ -823,7 +836,8 @@ class Shop {
 
     fun warenKorbBezahlen(kunde: KundenAccount) {
 
-        println("Wie möchten Sie bezahlen?")
+        println()
+        println("$yellow Wie möchten Sie bezahlen?$reset")
         var eingabe = 0
         while (true) {
 
@@ -832,10 +846,11 @@ class Shop {
                 println(
                     """
                 
-                [1] PayPal
-                [2] ApplePay
-                [3] Sofort-Überweisung
-                [4] Abbrechen
+                1) PayPal
+                2) ApplePay
+                3) Sofort-Überweisung
+                
+                4) Abbrechen
                 
             """.trimIndent()
                 )
@@ -850,6 +865,7 @@ class Shop {
                     1 -> {
                         println("Sie werden weitergeleitet...")
                         Thread.sleep(4000)
+                        println()
                         println("Herzlich Willkommen zu PayPal")
                         println()
                         println("Benutzername: ")
@@ -864,7 +880,7 @@ class Shop {
 
                                 println()
 
-                                println("Bezahlen? Ja/Nein")
+                                println("$yellow Bezahlen? Ja/Nein$reset")
 
                                 var auswahl = readln().lowercase()
 
@@ -872,7 +888,7 @@ class Shop {
                                     println("Bestellung wird bearbeitet...")
                                     Thread.sleep(3000)
                                     println()
-                                    println("Bestellung erfolgreich.")
+                                    println("$green Bestellung erfolgreich.$reset")
                                     kunde.warenKorb.clear()
                                     break
 
@@ -882,10 +898,10 @@ class Shop {
                                 }
 
                             } else {
-                                println("Falsches Passwort.")
+                                println("$red Falsches Passwort.$reset")
                             }
                         } else {
-                            println("Es existiert kein Account mit dem Benutzernamen.")
+                            println("$red Es existiert kein Account mit dem Benutzernamen.$reset")
                             continue
                         }
 
@@ -894,6 +910,7 @@ class Shop {
                     2 -> {
                         println("Sie werden weitergeleitet...")
                         Thread.sleep(4000)
+                        println()
                         println("Herzlich Willkommen zu ApplePay")
                         println("Benutzername: ")
                         var benutzerName = readln()
@@ -907,7 +924,7 @@ class Shop {
 
                                 println()
 
-                                println("Bezahlen? Ja/Nein")
+                                println("$yellow Bezahlen? Ja/Nein$reset")
 
                                 var auswahl = readln().lowercase()
 
@@ -915,7 +932,7 @@ class Shop {
                                     println("Bestellung wird bearbeitet...")
                                     Thread.sleep(3000)
                                     println()
-                                    println("Bestellung erfolgreich.")
+                                    println("$green Bestellung erfolgreich.$reset")
                                     kunde.warenKorb.clear()
                                     break
 
@@ -925,10 +942,10 @@ class Shop {
                                 }
 
                             } else {
-                                println("Falsches Passwort.")
+                                println("$red Falsches Passwort.$reset")
                             }
                         } else {
-                            println("Es existiert kein Account mit dem Benutzernamen.")
+                            println("$red Es existiert kein Account mit dem Benutzernamen.$reset")
                             continue
                         }
 
@@ -937,6 +954,7 @@ class Shop {
                     3 -> {
                         println("Sie werden weitergeleitet...")
                         Thread.sleep(4000)
+                        println()
                         println("Herzlich Willkommen zur Sofort-Überweisung")
                         println("Benutzername: ")
                         var benutzerName = readln()
@@ -950,7 +968,7 @@ class Shop {
 
                                 println()
 
-                                println("Bezahlen? Ja/Nein")
+                                println("$yellow Bezahlen? Ja/Nein$reset")
 
                                 var auswahl = readln().lowercase()
 
@@ -958,7 +976,7 @@ class Shop {
                                     println("Bestellung wird bearbeitet...")
                                     Thread.sleep(3000)
                                     println()
-                                    println("Bestellung erfolgreich.")
+                                    println("$green Bestellung erfolgreich.$reset")
                                     kunde.warenKorb.clear()
                                     break
 
@@ -969,10 +987,10 @@ class Shop {
                                 }
 
                             } else {
-                                println("Falsches Passwort.")
+                                println("$red Falsches Passwort.$reset")
                             }
                         } else {
-                            println("Es existiert kein Account mit dem Benutzernamen.")
+                            println("$red Es existiert kein Account mit dem Benutzernamen.$reset")
                             continue
                         }
                     }
@@ -983,7 +1001,7 @@ class Shop {
                 }
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
 
