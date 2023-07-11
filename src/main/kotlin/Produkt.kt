@@ -17,7 +17,7 @@ open class Produkt(var marke: String ,var name: String, var preis: Double, var b
         val formattedPrice = "%.2f EUR".format(this.preis).take(priceColumnWidth).padEnd(priceColumnWidth)
         val formattedRating = "%.1f ⭐️".format(this.averageAusrechnen).take(ratingColumnWidth).padEnd(ratingColumnWidth)
 
-        return "$formattedBrand$separator$formattedName$separator$formattedPrice$separator$formattedRating"
+        return "\t$formattedBrand$separator$formattedName$separator$formattedPrice$separator$formattedRating"
     }
 
 }
