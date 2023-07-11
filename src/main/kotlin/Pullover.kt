@@ -4,7 +4,7 @@ class Pullover(
     preis: Double,
     bewertung: MutableList<Double>,
     anzahl: Int,
-    var groesse: Char
+    var groesse: String
 ) : Kleidung(marke, name, preis, bewertung,anzahl) {
 
 

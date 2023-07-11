@@ -20,9 +20,4 @@ open class Produkt(var marke: String ,var name: String, var preis: Double, var b
         return "$formattedBrand$separator$formattedName$separator$formattedPrice$separator$formattedRating"
     }
 
-
-
-
-
-
 }

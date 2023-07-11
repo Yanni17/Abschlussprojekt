@@ -2,12 +2,12 @@ class Shop {
 
     var alleProdukte = mutableListOf<Produkt>(
 
-        Tshirt("Áme Noire","Classic T-Shirt", 22.99, bewertung = mutableListOf(), 10, 'M'),
-        Tshirt("Áme Noire","Basic T-Shirt", 19.99, bewertung = mutableListOf(), 10, 'M'),
-        Tshirt("Áme Noire","Limited T-Shirt", 39.99, bewertung = mutableListOf(), 10, 'M'),
-        Pullover("Áme Noire","Classic Pullover", 29.99, bewertung = mutableListOf(), 10, 'M'),
-        Pullover("Áme Noire","Basic Pullover", 24.99, bewertung = mutableListOf(), 10, 'M'),
-        Pullover("Áme Noire","Limited Pullover", 49.99, bewertung = mutableListOf(), 10, 'M'),
+        Tshirt("Áme Noire","Classic T-Shirt", 22.99, bewertung = mutableListOf(), 10, "M"),
+        Tshirt("Áme Noire","Basic T-Shirt", 19.99, bewertung = mutableListOf(), 10, "M"),
+        Tshirt("Áme Noire","Limited T-Shirt", 39.99, bewertung = mutableListOf(), 10, "M"),
+        Pullover("Áme Noire","Classic Pullover", 29.99, bewertung = mutableListOf(), 10, "M"),
+        Pullover("Áme Noire","Basic Pullover", 24.99, bewertung = mutableListOf(), 10, "M"),
+        Pullover("Áme Noire","Limited Pullover", 49.99, bewertung = mutableListOf(), 10, "M"),
         Halskette("Áme Noire","Edelstahl Halskette", 14.99, bewertung = mutableListOf(), 10, "Silber"),
         Halskette("Áme Noire","Vintage Halskette", 18.99, bewertung = mutableListOf(), 10, "Braun"),
         Halskette("Áme Noire","Modern Halskette", 21.99, bewertung = mutableListOf(), 10, "Schwarz"),
@@ -18,6 +18,12 @@ class Shop {
 
     fun shop(kunde: KundenAccount) {
 
+        println("""
+                            
+        $yellow                                ＡＬＬＥ ＰＲＯＤＵＫＴＥ $reset
+                       
+        """.trimIndent())
+
         for ((index, produkt) in alleProdukte.withIndex()) {
             println("[${index + 1}] $produkt")
         }
@@ -27,10 +33,11 @@ class Shop {
 
             println(
                 """
+                                           $yellow ＦＩＬＴＥＲ ／ ＳＯＲＴＩＥＲＵＮＧ$reset
             
-                [1] Filtern nach Tshirts            [3] Filtern nach Halsketten         [5] Sortieren nach Preis (absteigend)
+                [1] Filtern nach Tshirts            [2] Filtern nach Halsketten         [3] Sortieren nach Preis (absteigend)
                 
-                [2] Filtern nach Pullover           [4] Filtern nach Armbänder          [6] Sortieren nach Alphabet
+                [4] Filtern nach Pullover           [5] Filtern nach Armbänder          [6] Sortieren nach Alphabet
                 
                 
                                                     [7] Zurück
@@ -52,13 +59,13 @@ class Shop {
 
                     1 -> filterNachTshirts(kunde)
 
-                    2 -> filterNachPullover(kunde)
+                    2 -> filterNachHalsketten(kunde)
 
-                    3 -> filterNachArmbaender(kunde)
+                    3 -> sortiertNachPreis(kunde)
 
-                    4 -> filterNachHalsketten(kunde)
+                    4 -> filterNachPullover(kunde)
 
-                    5 -> sortiertNachPreis(kunde)
+                    5 -> filterNachArmbaender(kunde)
 
                     6 -> sortiertNachAlphabet(kunde)
 
@@ -69,7 +76,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe")
+                println("$red Ungültige Eingabe$reset")
             }
 
         }
@@ -100,6 +107,12 @@ class Shop {
     fun sortiertNachAlphabet(kunde: KundenAccount) {
 
         var sortierteListe = alleProdukte.sortedBy { it.name }
+
+        println("""
+                            
+        $yellow                                 ＡＬＰＨＡＢＥＴＩＳＣＨ $reset
+                       
+        """.trimIndent())
 
         for ((index, produkt) in sortierteListe.withIndex()) {
             println("[${index + 1}] $produkt")
@@ -198,6 +211,13 @@ class Shop {
 
         var sortierteListe = alleProdukte.sortedBy { it.preis }
 
+        println("""
+                            
+        $yellow                                ＰＲＥＩＳ （ＡＢＳＴＥＩＧＥＮＤ） $reset
+                       
+        """.trimIndent())
+
+
         for ((index, produkt) in sortierteListe.withIndex()) {
             println("[${index + 1}] $produkt")
         }
@@ -242,7 +262,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("Ungültige Eingabe.")
+                println("$red Ungültige Eingabe.$reset")
             }
 
         }
@@ -294,6 +314,12 @@ class Shop {
     fun filterNachTshirts(kunde: KundenAccount) {
 
         var gefilterteListe = mutableListOf<Tshirt>()
+
+        println("""
+                            
+        $yellow                                   Ｔ－ＳＨＩＲＴS $reset
+                       
+        """.trimIndent())
 
         for (produkt in alleProdukte) {
             if (produkt is Tshirt) {
@@ -400,6 +426,12 @@ class Shop {
 
         var gefilterteListe = mutableListOf<Pullover>()
 
+        println("""
+                            
+        $yellow                                   ＰＵＬＬＯＶＥＲ $reset
+                       
+        """.trimIndent())
+
         for (produkt in alleProdukte) {
             if (produkt is Pullover) {
                 gefilterteListe.add(produkt)
@@ -504,6 +536,12 @@ class Shop {
 
         var gefilterteListe = mutableListOf<Halskette>()
 
+        println("""
+                            
+        $yellow                                  ＨＡＬＳＫＥＴＴＥＮ $reset
+                       
+        """.trimIndent())
+
         for (produkt in alleProdukte) {
             if (produkt is Halskette) {
                 gefilterteListe.add(produkt)
@@ -605,6 +643,12 @@ class Shop {
     fun filterNachArmbaender(kunde: KundenAccount) {
 
         var gefilterteListe = mutableListOf<Armband>()
+
+        println("""
+                            
+        $yellow                                  ＡＲＭＢＡＥＮＤＥＲ $reset
+                       
+        """.trimIndent())
 
         for (produkt in alleProdukte) {
             if (produkt is Armband) {
@@ -893,6 +937,7 @@ class Shop {
                                     break
 
                                 } else {
+                                    Thread.sleep(2000)
                                     println("Sie werden zurückgeleitet.")
                                     break
                                 }

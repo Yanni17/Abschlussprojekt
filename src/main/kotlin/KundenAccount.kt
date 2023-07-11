@@ -38,8 +38,8 @@ class KundenAccount(
             Thread.sleep(2000)
         } else {
             println("""
-                _____________________________
-                          𝘞𝘈𝘙𝘌𝘕𝘒𝘖𝘙𝘉
+                
+                $yellow                                ＷＡＲＥＮＫＯＲＢ $reset
                           
             """.trimIndent())
             warenKorb.forEachIndexed { index, produkt ->

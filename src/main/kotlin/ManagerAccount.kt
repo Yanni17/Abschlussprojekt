@@ -6,7 +6,13 @@ class ManagerAccount(
 
     fun alleProdukteAnsehen(alleArtikel: MutableList<Produkt>) {
 
-        for((index,produkt) in alleArtikel.withIndex()){
+        println("""
+                            
+        $yellow                                ＡＬＬＥ ＰＲＯＤＵＫＴＥ $reset
+                       
+        """.trimIndent())
+
+        for ((index, produkt) in alleArtikel.withIndex()) {
 
             println("[${index + 1}] $produkt")
 
@@ -74,7 +80,7 @@ class ManagerAccount(
         var preis: Double
         var bewertung: Double
         var farbe: String
-        var groesse: Char
+        var groesse: String
 
 
         while (true) {
@@ -108,11 +114,33 @@ class ManagerAccount(
 
             }
 
-            println("$yellow Von welcher Marke ist das Produkt:$reset")
-            var marke = readln()
+            var marke = ""
 
-            println("$yellow Wie heißt das Produkt:$reset")
-            var name = readln()
+            while (true) {
+
+                println("$yellow Von welcher Marke ist das Produkt:$reset")
+                marke = readln()
+                if (marke.isEmpty()){
+                    println("$red Fügen Sie bitte eine Marke hinzu.$reset")
+                    continue
+                }else {
+                    break
+                }
+            }
+
+            var name = ""
+
+            while (true) {
+
+                println("$yellow Wie heißt das Produkt:$reset")
+                name = readln()
+                if (name.isEmpty()){
+                    println("$red Fügen Sie bitte einen Namen hinzu. $reset")
+                    continue
+                }else {
+                    break
+                }
+            }
 
 
             while (true) {
@@ -150,8 +178,12 @@ class ManagerAccount(
             when (auswahl) {
 
                 1 -> {
-                    println("$yellow In welcher Größe? z.B 'M'$reset ")
-                    groesse = readln().capitalize().first()
+                    println("$yellow In welcher Größe? z.B 'S,M,L,XL'$reset ")
+                    groesse = readln().uppercase()
+                    if (groesse !in listOf("S","M","L","XL")){
+                        println("$red Ungültige Größe! $reset")
+                        continue
+                    }
                     var tShirt = Tshirt(marke, name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(tShirt)
                     Thread.sleep(2000)
@@ -161,8 +193,12 @@ class ManagerAccount(
                 }
 
                 2 -> {
-                    println("$yellow In welcher Größe? z.B 'M'$reset ")
-                    groesse = readln().capitalize().first()
+                    println("$yellow In welcher Größe? z.B 'S,M,L,XL'$reset ")
+                    groesse = readln().uppercase()
+                    if (groesse !in listOf("S","M","L","XL")){
+                        println("$red Ungültige Größe! $reset")
+                        continue
+                    }
                     var pullover = Pullover(marke, name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(pullover)
                     Thread.sleep(2000)
@@ -197,29 +233,29 @@ class ManagerAccount(
 
     }
 
-    fun produktNachbestellen(alleArtikel: MutableList<Produkt>){
+    fun produktNachbestellen(alleArtikel: MutableList<Produkt>) {
 
         var auswahl = 0
 
-        for ((index,produkt) in alleArtikel.withIndex()){
+        for ((index, produkt) in alleArtikel.withIndex()) {
             println("[${index + 1}] $produkt    Vorhanden: ${produkt.anzahl}")
         }
         println()
         println("$yellow Welches Produkt möchten Sie nachbestellen?$reset")
 
-        while (true){
+        while (true) {
 
             try {
 
                 auswahl = readln().toInt()
 
-                if (auswahl > alleArtikel.size){
+                if (auswahl > alleArtikel.size) {
 
                     throw Exception()
 
-                }else break
+                } else break
 
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 println("$red Ungültige Eingabe.$reset")
             }
         }
@@ -229,23 +265,21 @@ class ManagerAccount(
         println("$yellow Wie viele möchten Sie davon bestellen?$reset")
         var anzahl = 0
 
-        while (true){
+        while (true) {
 
             try {
 
                 anzahl = readln().toInt()
                 break
 
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 println("$red Ungültige Eingabe$reset")
                 continue
             }
         }
 
-        Thread.sleep(2000)
         ausgewaehltesProdukt.anzahl += anzahl
         println("$green Sie haben erfolgreich $ausgewaehltesProdukt $anzahl x nachbestellt.$reset")
-
 
 
     }

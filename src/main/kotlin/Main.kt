@@ -104,6 +104,6 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
 }
 
 
-// todo : nur passwort bei login
-//todo : nur nach sterne nochmal fragen
-//todo: Benutzername muss mindest 5 zeichen
+//todo : nur passwort bei login
+//todo: Alter abfangen
+//todo: bestellbestätigung implementieren

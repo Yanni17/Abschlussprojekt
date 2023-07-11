@@ -1,23 +1,30 @@
 class LogIn {
 
     var accountDaten = mutableListOf<Account>(
-        ManagerAccount("Admin", "Jonny123",),
-        KundenAccount("Yanni","Pechlivanis123",21,"")
+        ManagerAccount("Admin", "Jonny123"),
+        KundenAccount("Yanni", "Pechlivanis123", 21, "")
     )
 
     fun register(): KundenAccount {
 
         var passwort = ""
-        println("""
+        println(
+            """
             _____________________________
                    Ｒｅｇｉｓｔｅｒ
                    
-        """.trimIndent())
+        """.trimIndent()
+        )
 
         while (true) {
 
             println("Benutzername:")
             var benutzerName = readln().trim()
+
+            if (benutzerName.length < 5) {
+                println("$red Sie benötigen einen Benutzernamen mit mindestens 5 Zeichen.!$reset")
+                continue
+            }
 
             try {
 
@@ -34,29 +41,26 @@ class LogIn {
                 continue
             }
 
-            try {
 
-                while (true) {
 
-                    var minLength = 10
-                    println("Passwort:  ")
-                    passwort = readln()
-                    if (passwort == passwort.capitalize()) {
-                        if (passwort.length >= minLength) {
-                            break
-                        } else {
-                            println("$red Das Passwort muss mindestens 10 Zeichen haben.$reset")
-                            continue
-                        }
+            while (true) {
+
+                var minLength = 10
+                println("Passwort:  ")
+                passwort = readln()
+                if (passwort == passwort.capitalize()) {
+                    if (passwort.length >= minLength) {
+                        break
                     } else {
-                        println("$red Der Anfangsbuchstabe muss Groß sein.$reset")
+                        println("$red Das Passwort muss mindestens 10 Zeichen haben.$reset")
                         continue
                     }
+                } else {
+                    println("$red Der Anfangsbuchstabe muss Groß sein.$reset")
+                    continue
                 }
-
-            } catch (e: Exception) {
-                println("$red Ungültige Eingabe$reset")
             }
+
 
             var alter = 0
 
@@ -74,7 +78,7 @@ class LogIn {
                     } else if (alter < 12) {
                         println("$red Sie sind leider zu Jung um sich zu registrieren.$reset")
                         continue
-                    }else {
+                    } else {
                         break
                     }
 
@@ -82,6 +86,7 @@ class LogIn {
                     println("$red Ungültige Eingabe.$reset")
 
                 }
+
             }
 
             println()
@@ -96,11 +101,13 @@ class LogIn {
 
     fun logInKunde(): KundenAccount? {
 
-        println("""
+        println(
+            """
             _____________________________
                       Ｌｏｇｉｎ
                         
-        """.trimIndent())
+        """.trimIndent()
+        )
         var versuche = 0
 
         while (versuche < 5) {
@@ -110,23 +117,16 @@ class LogIn {
             println("Passwort: ")
             var passwort = readln()
 
-            for (account in accountDaten) {
-                if (account is KundenAccount) {
-                    if (benutzerName == account.benutzername) {
-                        if (passwort == account.passwort) {
-                            println()
-                            println("$green Login Erfolgreich$reset")
-                            return account
-                        } else {
-                            println("$red Falsches Passwort.$reset")
-                            versuche++
-                            println("$versuche / 5 Versuchen.")
-                        }
-                    } else {
-                        println("$red Dieser Benutzername existiert nicht.$reset")
+            var kundenAccount = accountDaten.filterIsInstance<KundenAccount>().find { it.benutzername == benutzerName }
 
-                    }
-                }
+            if (kundenAccount != null && kundenAccount.passwort == passwort){
+                println()
+                println("$green Login Erfolgreich $reset")
+                return kundenAccount
+            }else {
+                println("$red Falscher Benutzername oder Passwort!$reset")
+                versuche++
+                println("$versuche / 5 Versuche.")
             }
 
 
@@ -139,11 +139,13 @@ class LogIn {
 
     fun logInManager(): ManagerAccount? {
 
-        println("""
+        println(
+            """
             _____________________________
                  Ａｄｍｉｎ Ｌｏｇｉｎ
                         
-        """.trimIndent())
+        """.trimIndent()
+        )
         var versuche = 0
 
         while (versuche < 5) {
