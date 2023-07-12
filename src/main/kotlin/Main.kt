@@ -103,7 +103,3 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
 
 }
 
-
-//todo : nur passwort bei login
-//todo: Alter abfangen
-//todo: bestellbestätigung implementieren
