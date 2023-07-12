@@ -1,3 +1,7 @@
+import account.Account
+import account.KundenAccount
+import account.ManagerAccount
+
 class LogIn {
 
     var accountDaten = mutableListOf<Account>(
@@ -22,7 +26,7 @@ class LogIn {
             var benutzerName = readln().trim()
 
             if (benutzerName.length < 5) {
-                println("$red Sie benötigen einen Benutzernamen mit mindestens 5 Zeichen.!$reset")
+                println("$red Sie benötigen einen Benutzernamen mit mindestens 5 Zeichen!$reset")
                 continue
             }
 
@@ -88,6 +92,8 @@ class LogIn {
                 }
 
             }
+
+
 
             println()
             println("$green Registration Erfolgreich.$reset")

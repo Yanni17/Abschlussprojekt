@@ -1,3 +1,11 @@
+package account
+
+import green
+import produkt.Produkt
+import red
+import reset
+import yellow
+
 class KundenAccount(
     benutzerName: String,
     passwort: String,

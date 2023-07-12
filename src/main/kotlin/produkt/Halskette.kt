@@ -1,4 +1,8 @@
-class Armband(
+package produkt
+
+import produkt.Accesoires
+
+class Halskette(
     marke: String,
     name: String,
     preis: Double,
@@ -7,8 +11,9 @@ class Armband(
     var farbe: String
 ) : Accesoires(marke, name, preis, bewertung,anzahl) {
 
+
     override fun toString(): String {
         return super.toString() + "| Farbe - $farbe"
-
     }
+
 }

@@ -1,3 +1,7 @@
+import account.KundenAccount
+import account.ManagerAccount
+import produkt.*
+
 class Shop {
 
     var alleProdukte = mutableListOf<Produkt>(

@@ -1,4 +1,6 @@
-open class Produkt(var marke: String ,var name: String, var preis: Double, var bewertung: MutableList<Double>, var anzahl: Int) {
+package produkt
+
+open class Produkt(var marke: String, var name: String, var preis: Double, var bewertung: MutableList<Double>, var anzahl: Int) {
 
     var averageAusrechnen = 0.0
 

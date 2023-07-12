@@ -71,8 +71,6 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                     if (manager != null) {
                         shop.managerInterface(manager)
                         break
-
-
                     } else {
                         continue
                     }
@@ -102,4 +100,5 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
     }
 
 }
+
 

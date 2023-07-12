@@ -1,3 +1,5 @@
+package produkt
+
 open class Kleidung(
     marke: String,
     name: String,

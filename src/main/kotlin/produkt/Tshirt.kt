@@ -1,4 +1,8 @@
-class Pullover(
+package produkt
+
+import produkt.Kleidung
+
+class Tshirt(
     marke: String,
     name: String,
     preis: Double,
@@ -7,9 +11,9 @@ class Pullover(
     var groesse: String
 ) : Kleidung(marke, name, preis, bewertung,anzahl) {
 
-
     override fun toString(): String {
         return super.toString() + "| Größe - $groesse"
     }
+
 
 }

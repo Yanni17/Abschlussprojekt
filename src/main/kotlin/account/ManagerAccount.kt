@@ -1,3 +1,12 @@
+package account
+
+import Shop
+import green
+import produkt.*
+import red
+import reset
+import yellow
+
 class ManagerAccount(
     benutzerName: String,
     passwort: String,
@@ -28,6 +37,12 @@ class ManagerAccount(
     }
 
     fun produktLoeschen(alleArtikel: MutableList<Produkt>) {
+
+        println("""
+                            
+        $yellow                                ＡＬＬＥ ＰＲＯＤＵＫＴＥ $reset
+                       
+        """.trimIndent())
 
         for ((index, produkt) in alleArtikel.withIndex()) {
             println("[${index + 1}] $produkt")
@@ -234,6 +249,12 @@ class ManagerAccount(
     }
 
     fun produktNachbestellen(alleArtikel: MutableList<Produkt>) {
+
+        println("""
+                            
+        $yellow                                ＡＬＬＥ ＰＲＯＤＵＫＴＥ $reset
+                       
+        """.trimIndent())
 
         var auswahl = 0
 
