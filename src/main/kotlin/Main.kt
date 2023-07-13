@@ -1,4 +1,4 @@
-import kotlin.math.log
+
 import kotlin.system.exitProcess
 
 
@@ -49,7 +49,7 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                 }
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe. 1 - 4 ! $reset")
+                println("${red}Ungültige Eingabe. 1 - 4 ! $reset")
                 continue
             }
 
@@ -79,7 +79,7 @@ fun welcomeScreen(login: LogIn, shop: Shop) {
                 3 -> {
                     var neuerKunde = login.register()
                     if (neuerKunde.alter < 12) {
-                        println("$red Sie sind leider zu Jung um einzukaufen.$reset")
+                        println("${red}Sie sind leider zu Jung um einzukaufen.$reset")
                         continue
                     } else if (neuerKunde.alter > 12) {
                         shop.userInterface(neuerKunde)

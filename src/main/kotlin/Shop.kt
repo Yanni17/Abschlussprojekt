@@ -80,32 +80,12 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe$reset")
+                println("${red}Ungültige Eingabe$reset")
             }
 
         }
 
 
-    }
-
-    fun alleAccessoires() {
-        var counter = 0
-        for (produkt in alleProdukte) {
-            if (produkt is Accesoires) {
-                println("[$counter] $produkt")
-                counter++
-            }
-        }
-    }
-
-    fun alleKleidungen() {
-        var counter = 0
-        for (produkt in alleProdukte) {
-            if (produkt is Kleidung) {
-                println("[$counter] $produkt")
-                counter++
-            }
-        }
     }
 
     fun sortiertNachAlphabet(kunde: KundenAccount) {
@@ -139,17 +119,17 @@ class Shop {
                     println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > sortierteListe.size) {
-                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("$red Das Produkt ist leider Ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -163,7 +143,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
         }
@@ -185,16 +165,16 @@ class Shop {
                     input2 = readln().toInt()
                     if (input2 > sortierteListe.size) {
 
-                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("$red Das Produkt ist leider ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
@@ -242,17 +222,17 @@ class Shop {
                     println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > sortierteListe.size) {
-                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("$red Das Produkt ist leider Ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -266,7 +246,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
         }
@@ -289,23 +269,23 @@ class Shop {
                     input2 = readln().toInt()
                     if (input2 > sortierteListe.size) {
 
-                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = sortierteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("$red Das Produkt ist leider ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("$red Ungültige eingabe.$reset")
+                    println("${red}Ungültige eingabe.$reset")
                 }
             } else {
                 break
@@ -352,17 +332,17 @@ class Shop {
                     println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("$red Das Produkt ist leider Ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -376,7 +356,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
         }
@@ -398,23 +378,23 @@ class Shop {
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("$red Das Produkt ist leider ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("$red Ungültige eingabe.$reset")
+                    println("${red}Ungültige eingabe.$reset")
                 }
             } else {
                 break
@@ -462,17 +442,17 @@ class Shop {
                     println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("$red Das Produkt ist leider Ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -486,7 +466,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
         }
@@ -508,23 +488,23 @@ class Shop {
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("$red Das Produkt ist leider ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("$red Ungültige eingabe.$reset")
+                    println("${red}Ungültige eingabe.$reset")
                 }
             } else {
                 break
@@ -572,17 +552,17 @@ class Shop {
                     println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("$red Das Produkt ist leider Ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -596,7 +576,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
         }
@@ -618,23 +598,23 @@ class Shop {
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("$red Das Produkt ist leider ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("$red Ungültige eingabe.$reset ")
+                    println("${red}Ungültige eingabe.$reset ")
                 }
             } else {
                 break
@@ -680,17 +660,17 @@ class Shop {
                     println("$yellow Welches Produkt möchten Sie hinzufügen?$reset")
                     ausgewählterIndex = readln().toInt()
                     if (ausgewählterIndex > gefilterteListe.size) {
-                        throw Exception("$red Das Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Das Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[ausgewählterIndex - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
                             nochEinProduktAbfrage = true
                             break
                         } else {
-                            println("$red Das Produkt ist leider Ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider Ausverkauft.$reset")
                             continue
                         }
 
@@ -704,7 +684,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
         }
@@ -726,23 +706,23 @@ class Shop {
                     input2 = readln().toInt()
                     if (input2 > gefilterteListe.size) {
 
-                        throw Exception("$red Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
+                        throw Exception("${red}Dieses Produkt haben wir nicht in unserem Sortiment.$reset")
                     } else {
                         var produkt = gefilterteListe[input2 - 1]
                         if (produkt.anzahl > 0) {
                             kunde.produktHinzufuegen(produkt)
                             produkt.anzahl--
-                            println("$green ${produkt.name} wurde erfolgreich hinzugefügt.$reset")
+                            println("${green}${produkt.name} wurde erfolgreich hinzugefügt.$reset")
 
                         } else {
-                            println("$red Das Produkt ist leider ausverkauft.$reset")
+                            println("${red}Das Produkt ist leider ausverkauft.$reset")
                             continue
                         }
                     }
 
 
                 } catch (e: Exception) {
-                    println("$red Ungültige eingabe.$reset ")
+                    println("${red}Ungültige eingabe.$reset ")
                 }
             } else {
                 break
@@ -791,7 +771,7 @@ class Shop {
 
 
                 } catch (e: Exception) {
-                    println("$red Ungültige Eingabe. 1 - 4 !$reset")
+                    println("${red}Ungültige Eingabe. 1 - 5 !$reset")
                 }
 
                 when (eingabe) {
@@ -863,7 +843,7 @@ class Shop {
 
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe$reset")
+                println("${red}Ungültige Eingabe$reset")
                 continue
             }
 
@@ -936,7 +916,7 @@ class Shop {
                                     println("Bestellung wird bearbeitet...")
                                     Thread.sleep(3000)
                                     println()
-                                    println("$green Bestellung erfolgreich.$reset")
+                                    println("${green}Bestellung erfolgreich.$reset")
                                     kunde.warenKorb.clear()
                                     break
 
@@ -947,10 +927,10 @@ class Shop {
                                 }
 
                             } else {
-                                println("$red Falsches Passwort.$reset")
+                                println("${red}Falsches Passwort.$reset")
                             }
                         } else {
-                            println("$red Es existiert kein Account mit dem Benutzernamen.$reset")
+                            println("${red}Es existiert kein Account mit dem Benutzernamen.$reset")
                             continue
                         }
 
@@ -981,7 +961,7 @@ class Shop {
                                     println("Bestellung wird bearbeitet...")
                                     Thread.sleep(3000)
                                     println()
-                                    println("$green Bestellung erfolgreich.$reset")
+                                    println("${green}Bestellung erfolgreich.$reset")
                                     kunde.warenKorb.clear()
                                     break
 
@@ -991,10 +971,10 @@ class Shop {
                                 }
 
                             } else {
-                                println("$red Falsches Passwort.$reset")
+                                println("${red}Falsches Passwort.$reset")
                             }
                         } else {
-                            println("$red Es existiert kein Account mit dem Benutzernamen.$reset")
+                            println("${red}Es existiert kein Account mit dem Benutzernamen.$reset")
                             continue
                         }
 
@@ -1025,7 +1005,7 @@ class Shop {
                                     println("Bestellung wird bearbeitet...")
                                     Thread.sleep(3000)
                                     println()
-                                    println("$green Bestellung erfolgreich.$reset")
+                                    println("${green}Bestellung erfolgreich.$reset")
                                     kunde.warenKorb.clear()
                                     break
 
@@ -1036,10 +1016,10 @@ class Shop {
                                 }
 
                             } else {
-                                println("$red Falsches Passwort.$reset")
+                                println("${red}Falsches Passwort.$reset")
                             }
                         } else {
-                            println("$red Es existiert kein Account mit dem Benutzernamen.$reset")
+                            println("${red}Es existiert kein Account mit dem Benutzernamen.$reset")
                             continue
                         }
                     }
@@ -1050,7 +1030,7 @@ class Shop {
                 }
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
 
 

@@ -70,7 +70,7 @@ class ManagerAccount(
 
                     alleArtikel.remove(ausgewaehltesProdukt)
                     Thread.sleep(2000)
-                    println("$green Produkt erfolgreich entfernt!$reset")
+                    println("${green}Produkt erfolgreich entfernt!$reset")
 
                     break
                 } else {
@@ -80,7 +80,7 @@ class ManagerAccount(
                 }
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe$reset")
+                println("${red}Ungültige Eingabe$reset")
             }
 
 
@@ -124,7 +124,7 @@ class ManagerAccount(
 
             } catch (e: Exception) {
 
-                println("$red Ungültige Eingabe$reset")
+                println("${red}Ungültige Eingabe$reset")
                 continue
 
             }
@@ -136,7 +136,7 @@ class ManagerAccount(
                 println("$yellow Von welcher Marke ist das Produkt:$reset")
                 marke = readln()
                 if (marke.isEmpty()){
-                    println("$red Fügen Sie bitte eine Marke hinzu.$reset")
+                    println("${red}Fügen Sie bitte eine Marke hinzu.$reset")
                     continue
                 }else {
                     break
@@ -150,7 +150,7 @@ class ManagerAccount(
                 println("$yellow Wie heißt das Produkt:$reset")
                 name = readln()
                 if (name.isEmpty()){
-                    println("$red Fügen Sie bitte einen Namen hinzu. $reset")
+                    println("${red}Fügen Sie bitte einen Namen hinzu. $reset")
                     continue
                 }else {
                     break
@@ -166,7 +166,7 @@ class ManagerAccount(
                     break
 
                 } catch (e: Exception) {
-                    println("$red Ungültige Eingabe$reset")
+                    println("${red}Ungültige Eingabe$reset")
                 }
 
             }
@@ -178,14 +178,14 @@ class ManagerAccount(
                     bewertung = readln().toDouble()
 
                     if (bewertung > 5.0) {
-                        throw Exception("$red Maximal 5.0$reset")
+                        throw Exception("${red}Maximal 5.0$reset")
                     }
 
                     break
 
                 } catch (e: Exception) {
                     println(e.message)
-                    println("$red Ungültige Eingabe.$reset")
+                    println("${red}Ungültige Eingabe.$reset")
                 }
 
             }
@@ -196,13 +196,13 @@ class ManagerAccount(
                     println("$yellow In welcher Größe? z.B 'S,M,L,XL'$reset ")
                     groesse = readln().uppercase()
                     if (groesse !in listOf("S","M","L","XL")){
-                        println("$red Ungültige Größe! $reset")
+                        println("${red}Ungültige Größe! $reset")
                         continue
                     }
                     var tShirt = Tshirt(marke, name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(tShirt)
                     Thread.sleep(2000)
-                    println("$green Produkt erfolgreich erstellt.$reset")
+                    println("${green}Produkt erfolgreich erstellt.$reset")
                     break
 
                 }
@@ -211,13 +211,13 @@ class ManagerAccount(
                     println("$yellow In welcher Größe? z.B 'S,M,L,XL'$reset ")
                     groesse = readln().uppercase()
                     if (groesse !in listOf("S","M","L","XL")){
-                        println("$red Ungültige Größe! $reset")
+                        println("${red}Ungültige Größe! $reset")
                         continue
                     }
                     var pullover = Pullover(marke, name, preis, bewertung = mutableListOf(), 10, groesse)
                     alleArtikel.add(pullover)
                     Thread.sleep(2000)
-                    println("$green Produkt erfolgreich erstellt.$reset")
+                    println("${green}Produkt erfolgreich erstellt.$reset")
                     break
 
                 }
@@ -228,7 +228,7 @@ class ManagerAccount(
                     var halskette = Halskette(marke, name, preis, bewertung = mutableListOf(), 10, farbe)
                     alleArtikel.add(halskette)
                     Thread.sleep(2000)
-                    println("$green Produkt erfolgreich erstellt.$reset")
+                    println("${green}Produkt erfolgreich erstellt.$reset")
                     break
                 }
 
@@ -238,7 +238,7 @@ class ManagerAccount(
                     var armband = Armband(marke, name, preis, bewertung = mutableListOf(), 10, farbe)
                     alleArtikel.add(armband)
                     Thread.sleep(2000)
-                    println("$green Produkt erfolgreich erstellt.$reset")
+                    println("${green}Produkt erfolgreich erstellt.$reset")
                     break
 
                 }
@@ -277,7 +277,7 @@ class ManagerAccount(
                 } else break
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe.$reset")
+                println("${red}Ungültige Eingabe.$reset")
             }
         }
 
@@ -294,13 +294,13 @@ class ManagerAccount(
                 break
 
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe$reset")
+                println("${red}Ungültige Eingabe$reset")
                 continue
             }
         }
 
         ausgewaehltesProdukt.anzahl += anzahl
-        println("$green Sie haben erfolgreich $ausgewaehltesProdukt $anzahl x nachbestellt.$reset")
+        println("${green}Sie haben erfolgreich $ausgewaehltesProdukt $anzahl x nachbestellt.$reset")
 
 
     }

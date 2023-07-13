@@ -6,7 +6,7 @@ class LogIn {
 
     var accountDaten = mutableListOf<Account>(
         ManagerAccount("Admin", "Jonny123"),
-        KundenAccount("Yanni", "Pechlivanis123", 21, "")
+        KundenAccount("Yanni", "Pechlivanis123", 27, "")
     )
 
     fun register(): KundenAccount {
@@ -26,7 +26,7 @@ class LogIn {
             var benutzerName = readln().trim()
 
             if (benutzerName.length < 5) {
-                println("$red Sie benötigen einen Benutzernamen mit mindestens 5 Zeichen!$reset")
+                println("${red}Sie benötigen einen Benutzernamen mit mindestens 5 Zeichen!$reset")
                 continue
             }
 
@@ -35,7 +35,7 @@ class LogIn {
                 for (account in accountDaten) {
                     if (account is KundenAccount) {
                         if (benutzerName == account.benutzername) {
-                            throw Exception("$red Benutzername existiert bereits.$reset")
+                            throw Exception("${red}Benutzername existiert bereits.$reset")
                         }
                     }
                 }
@@ -56,11 +56,11 @@ class LogIn {
                     if (passwort.length >= minLength) {
                         break
                     } else {
-                        println("$red Das Passwort muss mindestens 10 Zeichen haben.$reset")
+                        println("${red}Das Passwort muss mindestens 10 Zeichen haben.$reset")
                         continue
                     }
                 } else {
-                    println("$red Der Anfangsbuchstabe muss Groß sein.$reset")
+                    println("${red}Der Anfangsbuchstabe muss Groß sein.$reset")
                     continue
                 }
             }
@@ -80,14 +80,14 @@ class LogIn {
                         println("Sind Sie ein Mensch? 😮")
                         continue
                     } else if (alter < 12) {
-                        println("$red Sie sind leider zu Jung um sich zu registrieren.$reset")
+                        println("${red}Sie sind leider zu Jung um sich zu registrieren.$reset")
                         continue
                     } else {
                         break
                     }
 
                 } catch (e: Exception) {
-                    println("$red Ungültige Eingabe.$reset")
+                    println("${red}Ungültige Eingabe.$reset")
 
                 }
 
@@ -96,7 +96,7 @@ class LogIn {
 
 
             println()
-            println("$green Registration Erfolgreich.$reset")
+            println("${green}Registration Erfolgreich.$reset")
             var account = KundenAccount(benutzerName, passwort, alter, zahlungsMethode = "")
             accountDaten.add(account)
             return account
@@ -125,19 +125,19 @@ class LogIn {
 
             var kundenAccount = accountDaten.filterIsInstance<KundenAccount>().find { it.benutzername == benutzerName }
 
-            if (kundenAccount != null && kundenAccount.passwort == passwort){
+            if (kundenAccount != null && kundenAccount.passwort == passwort) {
                 println()
-                println("$green Login Erfolgreich $reset")
+                println("${green}Login Erfolgreich $reset")
                 return kundenAccount
-            }else {
-                println("$red Falscher Benutzername oder Passwort!$reset")
+            } else {
+                println("${red}Falscher Benutzername oder Passwort!$reset")
                 versuche++
                 println("$versuche / 5 Versuche.")
             }
 
 
         }
-        println("$red Sie sind gesperrt. Versuchen Sie es in 10 sekunden nochmal.$reset")
+        println("${red}Sie sind gesperrt. Versuchen Sie es in 10 sekunden nochmal.$reset")
         Thread.sleep(10000)
         return null
 
@@ -166,15 +166,15 @@ class LogIn {
                     if (benutzerName == account.benutzername) {
                         if (passwort == account.passwort) {
                             println()
-                            println("$green Login Erfolgreich.$reset")
+                            println("${green}Login Erfolgreich.$reset")
                             return account
                         } else {
-                            println("$red Falsches Passwort.$reset")
+                            println("${red}Falsches Passwort.$reset")
                             versuche++
                             println("$versuche / 5 Versuchen.")
                         }
                     } else {
-                        println("$red Dieser Benutzername existiert nicht.$reset")
+                        println("${red}Dieser Benutzername existiert nicht.$reset")
                         versuche++
                         println("$versuche / 5 Versuchen.")
                     }

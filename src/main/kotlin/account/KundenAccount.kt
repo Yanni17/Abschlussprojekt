@@ -80,14 +80,14 @@ class KundenAccount(
 
                     if (auswahl2 > warenKorb.size) {
 
-                        throw Exception("$red Das haben Sie nicht im Warenkorb.$reset")
+                        throw Exception("${red}Das haben Sie nicht im Warenkorb.$reset")
 
                     } else {
 
                         var produkt = warenKorb[auswahl2 - 1]
                         produktEnfernen(produkt)
                         produkt.anzahl++
-                        println("$green Produkt erfolgreich entfernt.$reset")
+                        println("${green}Produkt erfolgreich entfernt.$reset")
                         break
                     }
 
@@ -95,10 +95,10 @@ class KundenAccount(
                 } else if (auswahl == "nein") {
                     break
                 } else {
-                    throw Exception("$red Ja oder Nein.!$reset")
+                    throw Exception("${red}Ja oder Nein.!$reset")
                 }
             } catch (e: Exception) {
-                println("$red Ungültige Eingabe!$reset")
+                println("${red}Ungültige Eingabe!$reset")
                 e.message
             }
         }
@@ -119,17 +119,17 @@ class KundenAccount(
 
                 var eingabe = readln().toInt()
                 if (eingabe > alleArtikel.size) {
-                    throw Exception("$red Ungültige Zahl.$reset")
+                    throw Exception("${red}Ungültige Zahl.$reset")
                 } else {
                     var ausgewaehltesProdukt = alleArtikel[eingabe - 1]
                     println("$yellow Wie viele Sterne möchten Sie dem Produkt geben?$reset")
                     var bewertung = readln().toDouble()
                     if (bewertung > 5) {
-                        throw Exception("$red Maximal 5 Sterne.$reset")
+                        throw Exception("${red}Maximal 5 Sterne.$reset")
                     } else {
                         ausgewaehltesProdukt.bewertung.add(bewertung)
                         ausgewaehltesProdukt.averageAusrechnen = ausgewaehltesProdukt.bewertung.average()
-                        println("$green Vielen Dank für Ihre Bewertung.$reset")
+                        println("${green}Vielen Dank für Ihre Bewertung.$reset")
                         Thread.sleep(2000)
                         break
 
